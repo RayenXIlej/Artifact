@@ -1,0 +1,118 @@
+/*** Default styles ***/
+
+// page wrapper
+#page_wrapper {
+	background-color: #ffffff;
+}
+// images
+// responsive images
+img {width: 100%; height: auto;}
+.ml-bg-img {
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: auto;
+	background-attachment: scroll;
+}
+
+// CSS Basic Elements
+
+// default theme font
+body {line-height: 1.7; font-family: #{$defaultFont}; }
+
+// Typography
+// headings
+h1 {
+	font-size: 60px;
+	line-height: 35px;
+	font-weight: 300;
+	padding-bottom: 20px;
+}
+h2 {
+	font-size: 34px;
+	font-weight: 700;
+}
+h3 {
+	font-size: 24px;
+	line-height: 24px;
+	font-weight: 700;
+}
+h1,h2,h3,h4,h5,h6 {
+	color: #{$titleColor};
+	font-family: #{$titleFont};
+}
+// paragraph
+p {
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 400;
+	font-style: normal;
+	margin: 0 0 10px;
+}
+// lists
+ul {list-style-type: none; padding-left: 0px;}
+
+// links
+a {color: #{$LinksColor};}
+a:hover {text-decoration: none; color: #{$templateColor};}
+a:link {text-decoration: none;}
+a:focus {outline: none;}
+
+// button styles
+.ml-btn {
+	background: #{$templateColor};
+	color: #fff;
+	padding: 10px 15px;
+	border: none;
+	transition: background-color .15s ease-out;
+	font-family: #{$titleFont};
+	&:hover {
+		background: #{$hoverColor};
+		color: #fff;
+	}
+}
+.ml-btn--rounded {border-radius: 3px;}
+.ml-btn--style1 {
+	border:1px solid #fff;
+}
+.ml-btn-block {width: 100%; display: block;}
+
+// tables
+table td, th{padding: 10px; border: 1px solid #{$elementsTextColor};}
+
+// elements colors
+.ml-elem--light {color: #fff;}
+
+// hidden classes
+.ml-hidden-xs {@include mobile {display: none;}}
+.ml-hidden-sm {@include tablet_portrait{display: none;}}
+.ml-hidden-md {@include desktop{display: none;}}
+.ml-hidden-lg {@include min_ldesktop{display: none;}}
+.ml-clearfix {display: none;}
+
+// background
+.ml-bg--dark {background: #333;}
+.ml-bg-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+// containers
+.ml-container {
+	margin: auto;
+	@include min_tablet {width: 750px;}
+	@include min_desktop {width: 970px;}
+	@include min_ldesktop {width: 1170px;}
+}
+.ml-container-full {width: 100%;}
+.ml-section {position: relative;}
+
+// text alignment
+.ml-text--left {text-align: left;}
+.ml-text--right {text-align: right;}
+.ml-text--center {text-align: center;}
