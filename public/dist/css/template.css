@@ -159,7 +159,7 @@
 /*** 1. Body - General settings ***/
 /*** Default styles ***/
 #page_wrapper {
-  background-color: #ffffff;
+  background-color: #FFDEAD;
   background-repeat: repeat;
   background-position: left top;
   background-attachment: scroll;
@@ -231,7 +231,7 @@ a {
 
 a:hover {
   text-decoration: none;
-  color: #5bb7ed;
+  color: #000000;
 }
 
 a:link {
@@ -243,8 +243,8 @@ a:focus {
 }
 
 .ml-btn {
-  background: #5bb7ed;
-  color: #fff;
+  background: #c15bed;
+  color: #a01616;
   padding: 10px 15px;
   border: none;
   transition: background-color .4s ease-out;
