@@ -1,0 +1,185 @@
+@font-face {
+	font-family: 'icomoon';
+	src:  url('../fonts/icomoon/icomoon.eot?s7ii9b');
+	src:  url('../fonts/icomoon/icomoon.eot?s7ii9b#iefix') format('embedded-opentype'),
+		url('../fonts/icomoon/icomoon.ttf?s7ii9b') format('truetype'),
+		url('../fonts/icomoon/icomoon.woff?s7ii9b') format('woff'),
+		url('../fonts/icomoon/icomoon.svg?s7ii9b#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="ml-icon-"], [class*=" ml-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ml-icon-arrow-down:before {
+  content: "\e92e";
+}
+.ml-icon-arrow-up:before {
+  content: "\e92f";
+}
+.ml-icon-bag:before {
+  content: "\e929";
+}
+.ml-icon-heart3:before {
+  content: "\e92a";
+}
+.ml-icon-package:before {
+  content: "\e92b";
+}
+.ml-icon-panel:before {
+  content: "\e92c";
+}
+.ml-icon-search:before {
+  content: "\e92d";
+}
+.ml-icon-slider-next:before {
+  content: "\e930";
+}
+.ml-icon-slider-prev:before {
+  content: "\e931";
+}
+.ml-icon-shopping-cart2:before {
+  content: "\e928";
+}
+.ml-icon-arrow-left:before {
+  content: "\e900";
+}
+.ml-icon-arrow-right:before {
+  content: "\e901";
+}
+.ml-icon-injection:before {
+  content: "\e902";
+}
+.ml-icon-shield:before {
+  content: "\e903";
+}
+.ml-icon-ambulance:before {
+  content: "\e904";
+}
+.ml-icon-brain:before {
+  content: "\e905";
+}
+.ml-icon-cels:before {
+  content: "\e906";
+}
+.ml-icon-ear:before {
+  content: "\e907";
+}
+.ml-icon-eye:before {
+  content: "\e908";
+}
+.ml-icon-eye2:before {
+  content: "\e909";
+}
+.ml-icon-heart:before {
+  content: "\e90a";
+}
+.ml-icon-hospital:before {
+  content: "\e90b";
+}
+.ml-icon-lungs:before {
+  content: "\e90c";
+}
+.ml-icon-medicalkit:before {
+  content: "\e90d";
+}
+.ml-icon-nurse:before {
+  content: "\e90e";
+}
+.ml-icon-pills:before {
+  content: "\e90f";
+}
+.ml-icon-stethoscope:before {
+  content: "\e910";
+}
+.ml-icon-surgery:before {
+  content: "\e911";
+}
+.ml-icon-tooth:before {
+  content: "\e912";
+}
+.ml-icon-x-ray:before {
+  content: "\e913";
+}
+.ml-icon-shopping-cart:before {
+  content: "\e914";
+}
+.ml-icon-phone-call:before {
+  content: "\e915";
+}
+.ml-icon-clock:before {
+  content: "\e916";
+}
+.ml-icon-google-plus:before {
+  content: "\e917";
+}
+.ml-icon-facebook:before {
+  content: "\e918";
+}
+.ml-icon-instagram:before {
+  content: "\e919";
+}
+.ml-icon-twitter:before {
+  content: "\e91a";
+}
+.ml-icon-dribbble:before {
+  content: "\e91b";
+}
+.ml-icon-behance:before {
+  content: "\e91c";
+}
+.ml-icon-home:before {
+  content: "\e91d";
+}
+.ml-icon-mail:before {
+  content: "\e91e";
+}
+.ml-icon-send:before {
+  content: "\e91f";
+}
+.ml-icon-user:before {
+  content: "\e920";
+}
+.ml-icon-comment:before {
+  content: "\e921";
+}
+.ml-icon-socialheart:before {
+  content: "\e922";
+}
+.ml-icon-instagram2:before {
+  content: "\e923";
+}
+.ml-icon-pinterest:before {
+  content: "\e924";
+}
+.ml-icon-reply-arrow:before {
+  content: "\e925";
+}
+.ml-icon-heart2:before {
+  content: "\e926";
+}
+.ml-icon-calendar:before {
+  content: "\e927";
+}
+.ml-icon-arrow-right2:before {
+  content: "\ea3c";
+}
+.ml-icon-arrow-left2:before {
+  content: "\ea40";
+}
+.ml-icon-star:before {
+  content: "\e9d9";
+}

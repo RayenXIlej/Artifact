@@ -1,0 +1,110 @@
+/*** form element ***/
+
+/* text field */
+button, input, optgroup, select, textarea {
+	font-family: sans-serif;
+}
+input[type="password"]:focus,
+input[type="text"]:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus,
+textarea:focus {
+	outline: none;
+}
+input {color: #555; border-bottom: 1px solid #{$templateColor};}
+input[type="password"],
+input[type="text"],
+input[type="file"],
+textarea {
+	max-width: 100%;
+	margin-bottom: 15px;
+	padding: 18px 10px 10px;
+	height: auto;
+	background-color: transparent;
+	box-shadow: none;
+	border-width: 0 0 1px;
+	border-style: solid;
+	border-radius: 0;
+	display: block;
+	width: 100%;
+	font-size: 14px;
+	line-height: 1.42857143;
+	background-image: none;
+	border-color: ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+input:focus, textarea:focus {
+	border-bottom-width: 2px;
+	border-color: #{$hoverColor};
+}
+input[type="text"]:focus+label,
+input[type="password"]:focus+label,
+input[type="email"]:focus+label,
+.ml-input[class~="hasContent"]+label {
+	top: -10px;
+	font-size: 10px;
+	font-weight: 700;
+}
+input[type="text"]+label,
+input[type="password"]+label,
+input[type="email"]+label,
+textarea+label {
+	font-size: 14px;
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	cursor: text;
+	font-weight: 400;
+	transition: all .25s ease;
+}
+label {color: #{$hoverColor};}
+textarea:focus + label {display: none;}
+textarea[class~="hasContent"] + label {display: none;}
+.ml-form-component {
+	margin-bottom: 5px;
+	position: relative;
+}
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+	text-shadow: none;
+	padding: 10px 20px;
+	line-height: 1.6;
+	box-shadow: none;
+	font-size: 13px;
+	font-weight: 700;
+	border-style: solid;
+	color: #fff;
+	border-width: 0;
+	transition: background-color .15s ease-out;
+	background-color: #{$templateColor};
+}
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+button:hover {
+	background: #{$hoverColor};
+}
+select {
+	padding: 10px;
+	border-radius: 5px;
+}
+table, th, tr, td {
+	border: 1px solid #000;
+}
+th, tr, td {padding: 10px;}
+input[type="radio"],
+input[type="checkbox"] {
+	display: inline;
+}
+
+/* form components styles */
+.ml-component--light {
+	label {color: #fff;}
+	input, textarea {border-color: #fff;}
+}
+.ml-component--dark {
+	label {color: #333;}
+	input, textarea {border-color: #333;}
+}
