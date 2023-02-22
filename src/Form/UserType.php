@@ -5,9 +5,14 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\IsTrue;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -19,17 +24,82 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-                ->add('nom')
-                ->add('prenom')
-                ->add('email')
+                ->add('nom', TextType::class, [
+                    'label' => 'Nom',
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Merci de renseigner un Nom.',
+                        ]),
+                        new Length([
+                            'min' => 2,
+                            'minMessage' => 'Votre Nom doit contenir au moins {{ limit }} caractères.',
+                            'max' => 40,
+                            'maxMessage' => 'Votre Nom doit contenir au maximum {{ limit }} caractères.',
+                        ]),
+                    ],
+                ])
+                ->add('prenom', TextType::class, [
+                    'label' => 'Prenom',
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Merci de renseigner un Prenom.',
+                        ]),
+                        new Length([
+                            'min' => 2,
+                            'minMessage' => 'Votre Prenom doit contenir au moins {{ limit }} caractères.',
+                            'max' => 40,
+                            'maxMessage' => 'Votre Prenom doit contenir au maximum {{ limit }} caractères.',
+                        ]),
+                    ],
+                ])
+                ->add('email', EmailType::class, [
+                    'label' => 'Adresse Email',
+                    'constraints' => [
+                        new Email([
+                            'message' => 'L\'adresse email {{ value }} n\'est pas une adresse email valide.'
+                        ]),
+                        new NotBlank([
+                            'message' => 'Merci de renseigner une adresse email.'
+                        ]),
+                    ]
+                ])
                 ->add('dnaissance', DateType::class, [
                     'widget' => 'single_text',
                     'format' => 'yyyy-MM-dd'])
-                ->add('password',RepeatedType::class, [
-                    'type' =>PasswordType::class,
-                    'first_options' => ['label' => 'Password'],
-                    'second_options' => ['label' => 'Confirm Password'],
-                ])
+                ->add('password', PasswordType::class, [
+                        'label' => 'mot de passe',
+                        'invalid_message' => 'Le mot de passe ne correspond pas à sa confirmation.',
+                        'help' => 'Le mot de passe doit contenir 8.',
+                        'constraints' => [
+                            new NotBlank([
+                                'message' => 'Veuillez renseigner un mot de passe.',
+                            ]),
+                            new Length([
+                                'min' => 6,
+                                'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères.',
+                                // max length allowed by Symfony for security reasons
+                                'max' => 255,
+                                'maxMessage' => 'Votre mot de passe doit contenir au maximum {{ limit }} caractères.'
+                            ]),
+                        ]
+                    ])
+                ->add('confirm_password', PasswordType::class, [
+                        'label' => 'mot de passe',
+                        'invalid_message' => 'Le mot de passe ne correspond pas à sa confirmation.',
+                        'help' => 'Le mot de passe doit contenir 8 caractères.',
+                        'constraints' => [
+                            new NotBlank([
+                                'message' => 'Veuillez renseigner un mot de passe.',
+                            ]),
+                            new Length([
+                                'min' => 6,
+                                'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères.',
+                                // max length allowed by Symfony for security reasons
+                                'max' => 255,
+                                'maxMessage' => 'Votre mot de passe doit contenir au maximum {{ limit }} caractères.'
+                            ])
+                        ]
+                    ])
                 ->add('adresse',ChoiceType::class,
                     array('choices'=>array(
                         'Tunis'=>'Tunis',
@@ -70,7 +140,7 @@ class UserType extends AbstractType
                         ]),
                     ],
                 ])
-                ->add('ajouter', SubmitType::class)
+                
         ;
     }
 
