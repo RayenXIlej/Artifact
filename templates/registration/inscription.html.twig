@@ -14,7 +14,7 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="{{ path('app_login') }}" class="sign-in-form" method="post">
+          <form action="{{ path('app_login') }}" class="sign-in-form" method="post" novalidate="novalidate">
 
             {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -26,7 +26,7 @@
             </div>
             {% endif %}
 
-            <h2 class="title">Connectez</h2>
+            <h2 class="title">Se connecter</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus placeholder="Saisir votre Email">
@@ -49,68 +49,108 @@
               </a>
             </div>
           </form>
-          <form action="{{ path('security_registration') }}" class="sign-up-form" method="post">
+          <form action="{{ path('security_registration') }}" class="sign-up-form" method="post" novalidate="novalidate">
             <h2 class="title">Inscription</h2>
             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}})  }}
             <div class="input-field">
               <i class="fas fa-user"></i>
-              {{form_row(form.nom)}}
-              <input type="text" placeholder="Username" />
+              <div style="text-align:center;">
+                {{form_widget(form.nom, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre nom'} })}}
+                
+              </div>
             </div>
+            {{ form_errors(form.nom) }}
             <div class="input-field">
               <i class="fas fa-user"></i>
-              {{form_row(form.prenom)}}
+              <div style="text-align:center;">
+              {{form_widget(form.prenom, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre prénom'} })}}
+              
+              </div>
               
             </div>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <div>{{form_row(form.email)}}<>
-                  
-            </>
+            {{ form_errors(form.prenom) }}
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              {{form_row(form.dnaissance)}}
+              <div style="text-align:center;">
+              {{form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre adresse mail'} })}}
+              </div>   
+            </div>
+            {{ form_errors(form.email) }}
+            <div class="input-field">
+              <i class="fas fa-calendar-alt"></i>
+              <div style="text-align:center;">
+              {{form_widget(form.numtel, { 'attr': {'class': 'form-control', 'placeholder':'Composer votre Numero'} })}}
               
+              </div>
+            </div>
+            {{ form_errors(form.numtel) }}
+            <div class="input-field">
+              <i class="fas fa-unlock-alt"></i>
+              <div style="text-align:center;">
+              {{form_widget(form.password, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre MDP'} })}}
+              
+              </div>
               
             </div>
+            {{ form_errors(form.password) }}
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              {{form_row(form.password)}}
+              <div style="text-align:center;">
+              {{form_widget(form.confirm_password, { 'attr': {'class': 'form-control', 'placeholder':'confirmer votre MDP'} })}}
               
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              {{form_row(form.confirm_password)}}
+              </div>
                
             </div>
-
+            {{ form_errors(form.confirm_password) }}
             <div class="input-field">
-              <i class="fas fa-lock"></i>
-              {{form_row(form.adresse)}}
-           
+              <i class="fas fa-address-card"></i>
+              <div class="col-sm-10">
+                                <div style="text-align:center;">
+                                {{form_widget(form.adresse, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre nom'} })}}</div>
+                                
+                                </div>
             </div>
-
+            {{ form_errors(form.adresse) }}
             <div class="input-field">
-              <i class="fas fa-lock"></i>
-              {{form_row(form.type)}}
-           
-            </div>
-
-            <div class="input-field">
+              <i class="fas fa-thumbtack"></i>
+              <div style="text-align:center;">
+              {{form_widget(form.type, { 'attr': {'class': 'form-control', 'placeholder':'Vous ete ?'} })}}
               
-              {{form_row(form.ajouter)}}
-           
+              </div>
+            </div>
+            {{ form_errors(form.type) }}
+            <div id="diplome" style="display:none;">
+              {{ form_row(form.diplome) }}
+              {{ form_errors(form.diplome) }}
             </div>
 
-            <div class="input-field">
+            {{form_row(form.agreeTerms)}}
+            
               
-              {{form_row(form.agreeTerms)}}
-           
+            <div style="text-align: center;">  
+            <button type="submit" class="btn btn-block btn-info"><h> Inscription</h></button>
+            <button type="reset" class="btn btn-block btn-info"><h> Annuler</h></button>
             </div>
+            
+              
+              
+           
+            
 
             
+            
+            <script>
+                var diplome = document.getElementById('diplome');
+                var type = document.getElementById('{{ form.type.vars.id }}');
+                type.addEventListener('change', function () {
+                    if (type.value === 'veterinaire') {
+                        diplome.style.display = 'block';
+                    } else {
+                        diplome.style.display = 'none';
+                    }
+                });
+            </script>
             {{form_end(form)}}
-            
           </form>
         </div>
       </div>

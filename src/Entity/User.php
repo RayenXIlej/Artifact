@@ -5,11 +5,14 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -20,7 +23,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
+    #[Assert\NotBlank(message:"Le champs de l'email est obligatoire")]
+    #[Assert\Email(message:"L'e-mail '{{ value }}'N'est pas valide.")]
+    private ?string $email;
 
     #[ORM\Column]
     private array $roles = [];
@@ -29,18 +34,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    private ?string $password = null;
+    #[Assert\NotBlank(message:"Le champs mot de passe est obligatoire")]
+    #[Assert\Length(min:"8",minMessage:"Votre mot de passe doit contenir au moins 8 caractères")]
+    private ?string $password;
 
-    #[ORM\Column(length: 15, nullable: true)]
-     /** 
-       *@Assert\NotBlank(message="Ce champ est requis")    
-    */
+    #[ORM\Column(length: 15)]
+    #[Assert\NotBlank(message:"Le champs nom est obligatoire")]
+    #[Assert\Length(min:2,max:15, minMessage:"Le nom doit contenir au moins 2 caractères",maxMessage:"Le nom doit contenir au plus 15 caractères")]
+    #[Assert\Regex(pattern:"/^[a-zA-Z]+$/",message:"Le nom ne doit contenir que des lettres")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 15, nullable: true)]
-     /** 
-       *@Assert\NotBlank(message="Ce champs est requis")    
-    */
+    #[Assert\NotBlank(message:"Le champs prenom est obligatoire")]
+    #[Assert\Length(min:2,max:15, minMessage:"Le prenom doit comporter au moins 2 caractères",maxMessage:"Le prenom doit contenir au plus 15 caractères")]
+    #[Assert\Regex(pattern:"/^[a-zA-Z]+$/",message:"Le prenom ne doit contenir que des lettres")]
     private ?string $prenom = null;
 
     
@@ -50,29 +57,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?int $bloque = null;
 
-     /**
-      *@ORM\Column(type="date")
-      */
-    private $dnaissance;
 
 
 
     #[ORM\Column(length: 15, nullable: true)]
-     /** 
-       *@Assert\NotBlank(message="Choisir un type svp")    
-    */
+    #[Assert\NotBlank(message:"Le champs type est obligatoire")]
     private ?string $type = null;
 
-    
 
-    #[ORM\Column(length: 15, nullable: true)]
-     /** 
-       *@Assert\NotBlank(message="Choisir une adresse svp")    
-    */
+    #[ORM\Column(length: 15)]
+    #[Assert\NotBlank(message:"Le champs adresse est obligatoire")]
     private ?string $adresse = null;
+
+    #[Assert\NotBlank(message:"Le champs de confirmation du mot de passe est obligatoire")]
+    #[Assert\Length(min:"8",minMessage:"Votre mot de passe doit contenir au moins 8 caractères")]
+    public $confirm_password;
+
+    
+    #[ORM\Column(type:'string', nullable: true)]
+    private $diplome;
 
     #[ORM\OneToMany(mappedBy: 'idPetOwner', targetEntity: RendezVous::class)]
     private Collection $rendezVouses;
+
+    #[ORM\Column(length: 30)]
+    #[Assert\NotBlank(message:"Le champs numero de telephone est obligatoire")]
+    #[Assert\Length(min:"8",max:"8",minMessage:"Votre Numéro doit contenir 8 chiffres .")]
+    #[Assert\Regex(pattern:"/^[0-9]*$/", message:"Doit contenir des chiffres")]
+    private ?string $numtel = null;
+
+
 
     public function __construct()
     {
@@ -195,18 +209,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getDnaissance(): ?\DateTimeInterface
-    {
-        return $this->dnaissance;
-    }
-
-    public function setDnaissance(\DateTimeInterface $dnaissance): self
-    {
-        $this->dnaissance = $dnaissance;
-
-        return $this;
-    }
-
     public function getType(): ?string
     {
         return $this->type;
@@ -286,4 +288,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getDiplome()
+    {
+        return $this->diplome;
+    }
+
+    public function setDiplome($diplome)
+    {
+        $this->diplome = $diplome;
+
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->password;
+    }
+
+    public function getNumtel(): ?string
+    {
+        return $this->numtel;
+    }
+
+    public function setNumtel(string $numtel): self
+    {
+        $this->numtel = $numtel;
+
+        return $this;
+    }
+
+
 }

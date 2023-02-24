@@ -1,0 +1,159 @@
+{% extends 'base.html.twig' %}
+{% block topbar %}
+		<div style="background-color: #d2601a;" class="ml-topbar-wrapper">
+			<div class="ml-container ml-header-containerFull container">
+				<div class="ml-topbar ml-headerbar">
+					<div class="ml-topbar__component">
+						<div class="ml-socialIcons">
+							<span class="ml-socialIcons__item ml-icon-instagram ml-socialIcons__item--light"></span>
+							<span class="ml-socialIcons__item ml-icon-facebook ml-socialIcons__item--light"></span>
+							<span class="ml-socialIcons__item ml-icon-twitter ml-socialIcons__item--light"></span>
+						</div>
+					</div><!--/.ml-topbar__component-->
+					<div class="ml-topbar__component">
+						<a href="{{ path('updatePetSitter') }}" style="background-color: #1d3c45;" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Modifier compte</a>
+						<a href="{{ path('app_logout') }}" style="background-color: #1d3c45;" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Déconnexion</a>
+					</div><!--/.ml-topbar__component-->
+				</div><!--/.ml-topbar-->
+			</div><!--/.ml-container-->
+		</div><!--/.ml-topbar-wrapper-->
+{% endblock %}
+		{% block menuBar %}
+		<div class="ml-menubar-wrapper" style="background-color: #fff1e1">
+			<div class="ml-container ml-header-containerFull container">
+				<div class="ml-menubar ml-headerbar">
+					<div class="ml-mainMenu-trigger">
+						<a href="#" class="ml-menuBurger">
+							<span></span>
+							<span></span>
+							<span></span>
+						</a>
+					</div><!--/.ml-mainMenu-trigger-->
+					<ul class="ml-mainMenu">
+						<li class="ml-mainMenu__item active"><a href="{{ path("app_pet_sitter") }}"><span style="color: #1d3c45;">Home</span></a></li>
+						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">About</span></a></li>
+						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">offre</span></a></li>
+						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Blog</span></a></li>
+						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Contact</span></a></li>
+					</ul>
+				</div><!--/.ml-menubar-->
+			</div><!--/.ml-container-->
+		</div><!--/.ml-menubar-wrapper-->
+	{% endblock %}
+{% block mainContent %}
+{% if app.user.bloque == 1 %}
+				<div class="alert alert-danger">
+					<p>Désolé, votre compte est bloqué par l'administrateur!</p>
+				</div>
+				<div>
+					<img src="{{asset('dist/images/interdit.png')}}" alt="403">
+				</div>
+			{% elseif app.user.acces == 0 %}
+				<div class="alert alert-danger">
+					<p>Désolé, votre compte n'est pas encore approuvé par l'administrateur!</p>
+				</div>
+				<div>
+					<img src="{{asset('dist/images/interdit.png')}}" alt="403">
+				</div>
+			{% else %}
+    <section class="content">
+            <div class="card card-info">
+              <div class="card-header">
+                <h2 style="text-align: center; font-weight: bold; color: black;">Modifier compte</h2>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              
+                    <form class="form-horizontal" method="post">
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}})  }}
+                            <div class="card-body">
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Nom</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.nom, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre nom'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.nom) }}
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Prénom</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.prenom, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre prenom'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.prenom) }}
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre email'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.email) }}
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Numéro tel</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.numtel, { 'attr': {'class': 'form-control', 'placeholder':'Composer votre numero'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.numtel) }}
+
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.password, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre mot de passe'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.password) }}
+
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 col-form-label">confirm Password</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.confirm_password, { 'attr': {'class': 'form-control', 'placeholder':'confirmer votre mot de passe'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.confirm_password) }}
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Adresse</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.adresse, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre adresse'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.adresse) }}
+
+                            
+
+                            
+
+
+
+
+                            <div class="form-group row">
+                                <div class="offset-sm-2 col-sm-10">
+                                <div class="form-check">
+                                    {{form_row(form.agreeTerms)}}
+                                    
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- /.card-body -->
+                        <div style="text-align: center;">
+                            <button type="submit" class="btn btn-info">Ajouter</button>
+                            <button type="reset" class="btn btn-danger">Cancel</button>
+                        </div>   
+
+                        <div id="diplome" style="display:none;">
+                        {{ form_widget(form.diplome) }}
+                        {{ form_widget(form.type) }}
+                        </div>
+                        {{form_end(form)}}
+                    </form>
+            </div>
+           
+    </section>
+    {% endif %}
+{% endblock %}

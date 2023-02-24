@@ -1,0 +1,120 @@
+{% extends 'baseBack.html.twig' %}
+{% block headerContent %}
+{% endblock %}
+{% block mainContent %}
+<section class="content">
+            <div class="card card-info">
+              <div class="card-header">
+                <h2 style="text-align: center; font-weight: bold; color: black;">Ajouter un utilisateur</h2>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              
+                    <form class="form-horizontal" method="post" novalidate="novalidate">
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}})  }}
+                            <div class="card-body">
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Nom</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.nom, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre nom'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.nom) }}
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Prénom</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.prenom, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre prenom'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.prenom) }}
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre email'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.email) }}
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Numéro tel</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.numtel, { 'attr': {'class': 'form-control', 'placeholder':'Composer votre numéro'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.numtel) }}
+
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.password, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre mot de passe'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.password) }}
+
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 col-form-label">confirm Password</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.confirm_password, { 'attr': {'class': 'form-control', 'placeholder':'confirmer votre mot de passe'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.confirm_password) }}
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Adresse</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.adresse, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre adresse'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.adresse) }}
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">vous ête ?</label>
+                                <div class="col-sm-10">
+                                <div style="text-align:center;">{{form_widget(form.type, { 'attr': {'class': 'form-control', 'placeholder':'Saisir votre type'} })}}</div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.type) }}
+
+                            
+                             <div id="diplome" style="display:none;">
+                                {{ form_row(form.diplome) }}
+                                {{ form_errors(form.diplome) }}
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <div class="offset-sm-2 col-sm-10">
+                                <div class="form-check">
+                                    {{form_row(form.agreeTerms)}}
+                                    
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- /.card-body -->
+                            
+                        <div style="text-align: center;">
+                            <button type="submit" class="btn btn-info">Ajouter</button>
+                            <button type="reset" class="btn btn-danger">Cancel</button>
+                        </div> 
+                        <script>
+                            var diplome = document.getElementById('diplome');
+                            var type = document.getElementById('{{ form.type.vars.id }}');
+                            type.addEventListener('change', function () {
+                                if (type.value === 'veterinaire') {
+                                    diplome.style.display = 'block';
+                                } else {
+                                    diplome.style.display = 'none';
+                                }
+                            });
+                        </script>  
+                        {{form_end(form)}}
+                    </form>
+            </div>
+           
+    </section>
+{% endblock %}

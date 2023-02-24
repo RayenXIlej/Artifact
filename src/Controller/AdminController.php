@@ -21,10 +21,12 @@ class AdminController extends AbstractController
         $userVet = $repo->findByType("veterinaire");
         $userPetOwner = $repo->findByType("petOwner");
         $userPetSitter = $repo->findByType("petSitter");
+        $user = $repo->findAll();
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
             'userVets' => $userVet,
             'userPetOwners' => $userPetOwner,
+            'user' => $user,
             'userPetSitters' => $userPetSitter
         ]);
     }
@@ -54,12 +56,28 @@ class AdminController extends AbstractController
     }
 
      
-    #[Route('/removeUser/{id}', name: 'removeUser')]
+    #[Route('/removeVet/{id}', name: 'removeVet')]
     public function removeUser(User $user): Response{
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);
         $em->flush();
-        return $this->redirectToRoute('gererUser');
+        return $this->redirectToRoute('gererVet');
+    }
+
+    #[Route('/removePetOwner/{id}', name: 'removePetOwner')]
+    public function removePetOwner(User $user): Response{
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+        return $this->redirectToRoute('gererPetOwner');
+    }
+
+    #[Route('/removePetSitter/{id}', name: 'removePetSitter')]
+    public function removePetSitter(User $user): Response{
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+        return $this->redirectToRoute('gererPetSitter');
     }
 
     #[Route('/demandeAcces', name: 'demandeAcces')]
