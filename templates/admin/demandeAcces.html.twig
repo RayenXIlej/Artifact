@@ -33,7 +33,8 @@
                       <th>Prénom</th>
                       <th>Type</th>
                       <th>Email</th>
-                      <th>Validation</th>
+                      <th>Valider</th>
+                      <th>Refuser</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -44,6 +45,7 @@
                       <td>{{demande.type}}</td>
                       <td>{{demande.email}}</td>
                       <td><a href="{{ path('accepter', {'id':demande.id}) }}"><button type="button" class="btn btn-block btn-success">accepter</button></a></td>
+                      <td><a href="{{ path('removeVetAcces', {'id':demande.id}) }}" class="btn btn-danger btn-delete">Rufuser</a></td>
                     </tr>
                     {% endfor %}
                   </tbody>

@@ -10,8 +10,15 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+
+
+
 
 class AdminController extends AbstractController
 {
@@ -62,6 +69,14 @@ class AdminController extends AbstractController
         $em->remove($user);
         $em->flush();
         return $this->redirectToRoute('gererVet');
+    }
+
+    #[Route('/removeVetAcces/{id}', name: 'removeVetAcces')]
+    public function removeUserAcces(User $user): Response{
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+        return $this->redirectToRoute('demandeAcces');
     }
 
     #[Route('/removePetOwner/{id}', name: 'removePetOwner')]
@@ -142,9 +157,7 @@ class AdminController extends AbstractController
                 return $this->redirectToRoute("gererPetOwner");
             } else {
                 return $this->redirectToRoute("gererPetSitter");
-            }
-            
-            
+            }      
         
     }
 
@@ -196,6 +209,46 @@ class AdminController extends AbstractController
         return $this->render('admin/addUser.html.twig', [
             'form' => $form->createView(),'last_username' => $lastUsername, 'error' => $error
         ]);
+    }
+//-------------------------MOBILE------------------------------
+    #[Route('/displayPetSitter', name: 'displayPetSitter')]
+    public function displayPetSitter(UserRepository $repo){
+        $user = $repo->findByType("petSitter");
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($user);
+        return new JsonResponse($formatted);
+    }
+
+    #[Route('/removePetSitterMobile', name: 'removePetSitterMobile')]
+    public function removePetSitterMobile(Request $request): Response{
+        $id=$request->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $user=$em->getRepository(User::class)->find($id);
+        if($user==null){
+            $em->remove($user);
+            $em->flush();
+        }
+        $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted=$serializer->normalize("Utilisateur a ete supprimer avec succes");
+        return new JsonResponse($formatted);
+        
+    }
+
+    #[Route('/updateCompteUserMobile', name: 'updateCompteUserMobile')]
+    public function updateCompteUserMobile(Request $request): Response{
+        $em = $this->getDoctrine()->getManager();
+        $user=$this->getDoctrine()->getManager()->getRepository(User::class)->find($request->get('id'));
+        $user->setNom($request->get('nom'));
+        $user->setPrenom($request->get('prenom'));
+        $user->setEmail($request->get('email'));
+        $user->setAdresse($request->get('adresse'));
+        $user->setNumtel($request->get('numtel'));
+        $user->setPassword($request->get('password'));
+        $em->persist($user);
+        $em->flush();
+        $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted=$serializer->normalize("Utilisateur a ete modifier avec succes");
+        return new JsonResponse($formatted);
     }
 }
 
