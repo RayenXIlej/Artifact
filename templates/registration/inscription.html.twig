@@ -8,6 +8,8 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="inscription/style.css" />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
     <title>Registration</title>
   </head>
   <body>
@@ -102,6 +104,15 @@
                
             </div>
             {{ form_errors(form.confirm_password) }}
+
+             {# <div class="">
+              
+              
+                
+                      <div id='map' style='width: 40px; height: 30px;'></div>          
+                
+            </div> #}
+
             <div class="input-field">
               <i class="fas fa-address-card"></i>
               <div class="col-sm-10">
@@ -184,5 +195,6 @@
     </div>
 
     <script src="inscription/app.js"></script>
+    
   </body>
 </html>
