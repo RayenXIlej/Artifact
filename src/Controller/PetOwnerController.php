@@ -19,6 +19,14 @@ class PetOwnerController extends AbstractController
         ]);
     }
 
+    #[Route('/petOwner/about', name: 'aboutPetOwner')]
+    public function about(): Response
+    {
+        return $this->render('pet_owner/about.html.twig', [
+            'controller_name' => 'PetOwnerController',
+        ]);
+    }
+
     #[Route('/petOwner/updateCompte', name: 'updatePetOwner')]
     public function editProfil(Request $request, UserPasswordEncoderInterface $encoder): Response
     {

@@ -1,22 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block topbar %}
-		<div style="background-color: #d2601a;" class="ml-topbar-wrapper">
-			<div class="ml-container ml-header-containerFull container">
-				<div class="ml-topbar ml-headerbar">
-					<div class="ml-topbar__component">
-						<div class="ml-socialIcons">
-							<span class="ml-socialIcons__item ml-icon-instagram ml-socialIcons__item--light"></span>
-							<span class="ml-socialIcons__item ml-icon-facebook ml-socialIcons__item--light"></span>
-							<span class="ml-socialIcons__item ml-icon-twitter ml-socialIcons__item--light"></span>
-						</div>
-					</div><!--/.ml-topbar__component-->
-					<div class="ml-topbar__component">
-						<a href="{{ path('updatePetSitter') }}" style="background-color: #1d3c45;" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Modifier compte</a>
-						<a href="{{ path('app_logout') }}" style="background-color: #1d3c45;" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Déconnexion</a>
-					</div><!--/.ml-topbar__component-->
-				</div><!--/.ml-topbar-->
-			</div><!--/.ml-container-->
-		</div><!--/.ml-topbar-wrapper-->
 {% endblock %}
 		{% block menuBar %}
 		<div class="ml-menubar-wrapper" style="background-color: #fff1e1">
@@ -36,6 +19,10 @@
 						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Blog</span></a></li>
 						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Contact</span></a></li>
 					</ul>
+					<div class="ml-topbar__component">
+						<a href="{{ path('updatePetSitter') }}" style="background-color: #1d3c45;" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Modifier compte</a>
+						<a href="{{ path('app_logout') }}" style="background-color: #1d3c45;" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Déconnexion</a>
+					</div><!--/.ml-topbar__component-->
 				</div><!--/.ml-menubar-->
 			</div><!--/.ml-container-->
 		</div><!--/.ml-menubar-wrapper-->

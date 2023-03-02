@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+{% block topbar %}
+{% endblock %}
+		{% block menuBar %}
+		<div class="ml-menubar-wrapper" style="background-color: #daf2dc">
+			<div class="ml-container ml-header-containerFull container">
+				<div class="ml-menubar ml-headerbar">
+					<div class="ml-mainMenu-trigger">
+						<a href="#" class="ml-menuBurger">
+							<span></span>
+							<span></span>
+							<span></span>
+						</a>
+					</div><!--/.ml-mainMenu-trigger-->
+					<ul class="ml-mainMenu">
+						<li class="ml-mainMenu__item active"><a href="{{ path("app_pet_owner") }}"><span style="color: #1d3c45;">Home</span></a></li>
+						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">About</span></a></li>
+						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Prendre rendez-vous</span></a></li>
+                        <li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Adoption</span></a></li>
+                        <li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Magasin</span></a></li>
+                        <li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">PetSitting</span></a></li>
+						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Blog</span></a></li>
+						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Contact</span></a></li>
+					</ul>
+					<div class="ml-topbar__component">
+						<a href="{{ path('updatePetOwner') }}" style="background-color: #1d3c45;" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Modifier compte</a>
+						<a href="{{ path('app_logout') }}" style="background-color: #1d3c45;" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Déconnexion</a>
+					</div>
+				</div><!--/.ml-menubar-->
+			</div><!--/.ml-container-->
+		</div><!--/.ml-menubar-wrapper-->
+	{% endblock %}
+    {% block mainContent %}
+
+			{% if app.user.bloque == 1 %}
+				<div class="alert alert-danger">
+					<p>Désolé, votre compte est bloqué par l'administrateur!</p>
+				</div>
+				<div>
+					<img src="{{asset('dist/images/interdit.png')}}" alt="403">
+				</div>
+			{% elseif app.user.acces == 0 %}
+				<div class="alert alert-danger">
+					<p>Désolé, votre compte n'est pas encore approuvé par l'administrateur!</p>
+				</div>
+				<div>
+					<img src="{{asset('dist/images/interdit.png')}}" alt="403">
+				</div>
+			{% else %}
+            			<!-- Slider end -->
+			<div class="ml-servicesSection">
+				<div class="container ml-container">
+					<div class="row">
+						<div class="col-sm-6 col-md-6">
+							<div class="row">
+								<div class="col-sm-6 col-md-6">
+									<p class="ml-services__title ml-services__title--pt-25">Animallz Services</p>
+									<ul class="ml-services ml-services--hoverline">
+										<li class="ml-services__item active"><a href="#"><span>About</span></a></li>
+										<li class="ml-services__item"><a href="#"><span>Prendre rendez-vous</span></a></li>
+										<li class="ml-services__item"><a href="#"><span>Adoption</span></a></li>
+										<li class="ml-services__item"><a href="#"><span>PetSitting</span></a></li>
+										<li class="ml-services__item"><a href="#"><span>Magasin</span></a></li>
+										<li class="ml-services__item"><a href="#"><span>Forum</span></a></li>
+	
+									</ul><!--/.ml-services-->
+								</div><!--/.col-sm-6 col-md-6-->
+								<div class="col-sm-6 col-md-6">
+									<p class="ml-services__title ml-services__title--pt-25">who we are ?</p>
+									<div class="ml-imageBox">
+										<div class="ml-imageBox-wrapper">
+											<div class="ml-imageBox-imgWrapper">
+												<img src="dist/images/vet1.jpg" alt="">
+											</div>
+										</div><!--/.ml-imageBox-wrapper-->
+									</div>
+									<p class="ml-services__text ml-services__text--mt-20">Send us your CV and we will make you an appointment</p>
+								</div><!--/.col-sm-6 col-md-6-->
+							</div><!--/.row-->
+						</div><!--/.col-sm-6 col-md-6-->
+						<div class="col-sm-6 col-md-6">
+							<div class="ml-verticalTabs ml-tabs ml-verticalTabs--ml30 ml-verticalTabs--pl30">
+								<ul class="ml-verticalTabs__list ml-tabs__list">
+									<li data-tab="why" class="ml-verticalTabs__listItem activeTab">Why</li>
+									<li data-tab="how" class="ml-verticalTabs__listItem">How</li>
+									<li data-tab="what" class="ml-verticalTabs__listItem">What</li>
+								</ul>
+								<div class="ml-verticalTabs__panels ml-tabs__panels">
+									<div class="why ml-panel activeTab">
+										<h3 class="ml-panel__title">welcomes you!</h3>
+										<p class="ml-panel__text">Le service d'une application de prise de rendez-vous chez un vétérinaire offrirait aux utilisateurs une plateforme pratique et simple pour réserver un rendez-vous avec un vétérinaire de leur choix. </p>
+										<p class="ml-panel__text">We sincerely believe that visiting a dentist shouldn't be a frightening or stressful experience! We provide an equally comfortable.</p>
+										<a class="ml-btn ml-btn--inlineb ml-btn--style2 ml-btn--right ml-btn--mdBlue ml-btn--rounded ml-btn--mt-30" href="#" tabindex="-1">Read more</a>
+									</div>
+									<div class="how ml-panel">
+										<h3 class="ml-panel__title">Dental clinic BeDentist welcomes you!</h3>
+										<p class="ml-panel__text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+										<p class="ml-panel__text">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+										<a class="ml-btn ml-btn--inlineb ml-btn--style2 ml-btn--right ml-btn--mdBlue ml-btn--rounded ml-btn--mt-30" href="#" tabindex="-1">Read more</a>
+									</div><!--/.ml-panel-->
+									<div class="what ml-panel">
+										<h3 class="ml-panel__title">Dental clinic BeDentist welcomes you!</h3>
+										<p class="ml-panel__text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident. </p>
+										<p class="ml-panel__text">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. </p>
+										<a class="ml-btn ml-btn--inlineb ml-btn--style2 ml-btn--right ml-btn--mdBlue ml-btn--rounded ml-btn--mt-30" href="#" tabindex="-1">Read more</a>
+									</div><!--/.ml-panel-->
+								</div><!--/.ml-tabs__panels-->
+							</div><!--/.ml-tabs-->
+						</div><!--/.col-sm-6 col-md-6-->
+					</div><!--/.row-->
+				</div><!--/.container ml-container-->
+			</div><!--/.ml-servicesSection-->
+
+            
+            {% endif %}
+    {% endblock %}

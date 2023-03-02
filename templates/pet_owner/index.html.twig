@@ -1,22 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block topbar %}
-		<div style="background-color: #cbd18f;" class="ml-topbar-wrapper">
-			<div class="ml-container ml-header-containerFull container">
-				<div class="ml-topbar ml-headerbar">
-					<div class="ml-topbar__component">
-						<div class="ml-socialIcons">
-							<span class="ml-socialIcons__item ml-icon-instagram ml-socialIcons__item--light"></span>
-							<span class="ml-socialIcons__item ml-icon-facebook ml-socialIcons__item--light"></span>
-							<span class="ml-socialIcons__item ml-icon-twitter ml-socialIcons__item--light"></span>
-						</div>
-					</div><!--/.ml-topbar__component-->
-					<div class="ml-topbar__component">
-						<a href="{{ path('updatePetOwner') }}" style="background-color: #1d3c45;" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Modifier compte</a>
-						<a href="{{ path('app_logout') }}" style="background-color: #1d3c45;" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Déconnexion</a>
-					</div><!--/.ml-topbar__component-->
-				</div><!--/.ml-topbar-->
-			</div><!--/.ml-container-->
-		</div><!--/.ml-topbar-wrapper-->
 {% endblock %}
 		{% block menuBar %}
 		<div class="ml-menubar-wrapper" style="background-color: #daf2dc">
@@ -31,7 +14,7 @@
 					</div><!--/.ml-mainMenu-trigger-->
 					<ul class="ml-mainMenu">
 						<li class="ml-mainMenu__item active"><a href="{{ path("app_pet_owner") }}"><span style="color: #1d3c45;">Home</span></a></li>
-						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">About</span></a></li>
+						<li class="ml-mainMenu__item"><a href="{{ path('aboutPetOwner') }}"><span style="color: #1d3c45;">About</span></a></li>
 						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Prendre rendez-vous</span></a></li>
                         <li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Adoption</span></a></li>
                         <li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Magasin</span></a></li>
@@ -39,6 +22,10 @@
 						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Blog</span></a></li>
 						<li class="ml-mainMenu__item"><a href="#"><span style="color: #1d3c45;">Contact</span></a></li>
 					</ul>
+					<div class="ml-topbar__component">
+						<a href="{{ path('updatePetOwner') }}" style="background-color: #1d3c45;" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Modifier compte</a>
+						<a href="{{ path('app_logout') }}" style="background-color: #1d3c45;" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Déconnexion</a>
+					</div>
 				</div><!--/.ml-menubar-->
 			</div><!--/.ml-container-->
 		</div><!--/.ml-menubar-wrapper-->
@@ -99,267 +86,31 @@
 				</button>
 			</div>
 			</div><!--/.ml-slider-->
-			<!-- Slider end -->
-			<div class="ml-servicesSection">
+
+
+			<!-- Speciality section start -->
+			<div class="ml-specialitySection">
 				<div class="container ml-container">
 					<div class="row">
 						<div class="col-sm-6 col-md-6">
-							<div class="row">
-								<div class="col-sm-6 col-md-6">
-									<p class="ml-services__title ml-services__title--pt-25">Animallz Services</p>
-									<ul class="ml-services ml-services--hoverline">
-										<li class="ml-services__item active"><a href="#"><span>About</span></a></li>
-										<li class="ml-services__item"><a href="#"><span>Prendre rendez-vous</span></a></li>
-										<li class="ml-services__item"><a href="#"><span>Adoption</span></a></li>
-										<li class="ml-services__item"><a href="#"><span>PetSitting</span></a></li>
-										<li class="ml-services__item"><a href="#"><span>Magasin</span></a></li>
-										<li class="ml-services__item"><a href="#"><span>Forum</span></a></li>
-	
-									</ul><!--/.ml-services-->
-								</div><!--/.col-sm-6 col-md-6-->
-								<div class="col-sm-6 col-md-6">
-									<p class="ml-services__title ml-services__title--pt-25">who we are ?</p>
-									<div class="ml-imageBox">
-										<div class="ml-imageBox-wrapper">
-											<div class="ml-imageBox-imgWrapper">
-												<img src="dist/images/vet1.jpg" alt="">
-											</div>
-										</div><!--/.ml-imageBox-wrapper-->
-									</div>
-									<p class="ml-services__text ml-services__text--mt-20">Send us your CV and we will make you an appointment</p>
-								</div><!--/.col-sm-6 col-md-6-->
-							</div><!--/.row-->
-						</div><!--/.col-sm-6 col-md-6-->
+							<img src="dist/images/dog.jpg" alt="..." class="ml-specialityImg ml-specialityImgBack">
+							<img src="dist/images/cat.jpg" alt="..." class="ml-specialityImg ml-specialityImgFront">
+						</div>
 						<div class="col-sm-6 col-md-6">
-							<div class="ml-verticalTabs ml-tabs ml-verticalTabs--ml30 ml-verticalTabs--pl30">
-								<ul class="ml-verticalTabs__list ml-tabs__list">
-									<li data-tab="why" class="ml-verticalTabs__listItem activeTab">Why</li>
-									<li data-tab="how" class="ml-verticalTabs__listItem">How</li>
-									<li data-tab="what" class="ml-verticalTabs__listItem">What</li>
-								</ul>
-								<div class="ml-verticalTabs__panels ml-tabs__panels">
-									<div class="why ml-panel activeTab">
-										<h3 class="ml-panel__title">welcomes you!</h3>
-										<p class="ml-panel__text">Le service d'une application de prise de rendez-vous chez un vétérinaire offrirait aux utilisateurs une plateforme pratique et simple pour réserver un rendez-vous avec un vétérinaire de leur choix. </p>
-										<p class="ml-panel__text">We sincerely believe that visiting a dentist shouldn't be a frightening or stressful experience! We provide an equally comfortable.</p>
-										<a class="ml-btn ml-btn--inlineb ml-btn--style2 ml-btn--right ml-btn--mdBlue ml-btn--rounded ml-btn--mt-30" href="#" tabindex="-1">Read more</a>
-									</div>
-									<div class="how ml-panel">
-										<h3 class="ml-panel__title">Dental clinic BeDentist welcomes you!</h3>
-										<p class="ml-panel__text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-										<p class="ml-panel__text">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-										<a class="ml-btn ml-btn--inlineb ml-btn--style2 ml-btn--right ml-btn--mdBlue ml-btn--rounded ml-btn--mt-30" href="#" tabindex="-1">Read more</a>
-									</div><!--/.ml-panel-->
-									<div class="what ml-panel">
-										<h3 class="ml-panel__title">Dental clinic BeDentist welcomes you!</h3>
-										<p class="ml-panel__text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident. </p>
-										<p class="ml-panel__text">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. </p>
-										<a class="ml-btn ml-btn--inlineb ml-btn--style2 ml-btn--right ml-btn--mdBlue ml-btn--rounded ml-btn--mt-30" href="#" tabindex="-1">Read more</a>
-									</div><!--/.ml-panel-->
-								</div><!--/.ml-tabs__panels-->
-							</div><!--/.ml-tabs-->
+							<div class="ml-speciality">
+								<div class="ml-speciality__wrapper">
+									<h4 class="ml-speciality__subtitle">Animallz</h4>
+									<h3 class="ml-speciality__subtitle">Conseils pour votre compagnon</h3>
+									<p class="ml-speciality__text">Pour être un propriétaire responsable, il est important d'être attentif aux besoins physiques et émotionnels de votre animal. Cela signifie offrir des soins de qualité, des promenades régulières, des interactions sociales positives, une nourriture équilibrée et des soins vétérinaires appropriés. Les animaux ont des besoins individuels, alors assurez-vous de connaître ceux de votre animal et de répondre à leurs exigences en fonction de leur âge, de leur race et de leur personnalité.</p>
+									<p class="ml-speciality__text">Assurez-vous que votre animal a suffisamment d'exercice pour maintenir sa santé et son poids, ainsi qu'un endroit sûr et confortable pour dormir. Offrez-lui des jouets et des activités stimulantes pour éviter l'ennui et le stress. Donnez-lui une nourriture de qualité et de l'eau propre en tout temps. Assurez-vous de lui donner une attention positive et de la socialisation avec d'autres animaux et humains. Finalement, assurez-vous que votre animal a une visite vétérinaire régulière pour les examens de santé et les vaccinations nécessaires pour prévenir les maladies. En somme, en étant attentif et en répondant aux besoins de votre animal, vous pouvez garantir sa santé et son bien-être tout au long de sa vie.</p>
+									
+								</div><!--/.ml-speciality__wrapper-->
+							</div><!--/.ml-speciality-->
 						</div><!--/.col-sm-6 col-md-6-->
 					</div><!--/.row-->
 				</div><!--/.container ml-container-->
-			</div><!--/.ml-servicesSection-->
-			<!--  Services section end -->
-			<!-- Icon box section start -->
-			<div class="ml-iconBoxSection">
-				<div class="container ml-container">
-					<div class="row ml-gutter-0">
-						<div class="col-md-3 col-sm-6 col-xs-12 ml-iconbox__col">
-							<div class="ml-iconbox ml-iconbox--style2 ml-text--center">
-								<a href="#" class="ml-iconbox__anchor">
-									<div class="ml-iconbox__iconWrapper">
-										<span class="ml-iconbox__icon ml-icon-ambulance"></span>
-									</div><!--/.ml-iconbox__iconWrapper-->
-									<div class="ml-iconbox__contentWrapper">
-										<div class="ml-iconbox__titleWrapper">
-											<h3 class="ml-iconbox__title">Ambulatory</h3>
-										</div><!--/.ml-iconbox__titleWrapper-->
-										<div class="ml-iconbox__descWrapper">
-											<p class="ml-iconbox__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed</p>
-										</div><!--/.ml-iconbox__descWrapper-->
-									</div><!--/.ml-iconbox__contentWrapper-->
-								</a><!--/.ml-iconbox__anchor-->
-							</div><!--/.ml-iconbox-->
-						</div><!--/.col-md-3 col-sm-6 col-xs-12-->
-						<div class="col-md-3 col-sm-6 col-xs-12 ml-iconbox__col">
-							<div class="ml-iconbox ml-iconbox--style2 ml-text--center">
-								<a href="#" class="ml-iconbox__anchor">
-									<div class="ml-iconbox__iconWrapper">
-										<span class="ml-iconbox__icon ml-icon-injection"></span>
-									</div><!--/.ml-iconbox__iconWrapper-->
-									<div class="ml-iconbox__contentWrapper">
-										<div class="ml-iconbox__titleWrapper">
-											<h3 class="ml-iconbox__title">Vaccination</h3>
-										</div><!--/.ml-iconbox__titleWrapper-->
-										<div class="ml-iconbox__descWrapper">
-											<p class="ml-iconbox__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed</p>
-										</div><!--/.ml-iconbox__descWrapper-->
-									</div><!--/.ml-iconbox__contentWrapper-->
-								</a><!--/.ml-iconbox__anchor-->
-							</div><!--/.ml-iconbox-->
-						</div><!--/.col-md-3 col-sm-6 col-xs-12-->
-						<div class="col-md-3 col-sm-6 col-xs-12 ml-iconbox__col">
-							<div class="ml-iconbox ml-iconbox--style2 ml-text--center">
-								<a href="#" class="ml-iconbox__anchor">
-									<div class="ml-iconbox__iconWrapper">
-										<span class="ml-iconbox__icon ml-icon-eye"></span>
-									</div><!--/.ml-iconbox__iconWrapper-->
-									<div class="ml-iconbox__contentWrapper">
-										<div class="ml-iconbox__titleWrapper">
-											<h3 class="ml-iconbox__title">General Surgery</h3>
-										</div><!--/.ml-iconbox__titleWrapper-->
-										<div class="ml-iconbox__descWrapper">
-											<p class="ml-iconbox__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed</p>
-										</div><!--/.ml-iconbox__descWrapper-->
-									</div><!--/.ml-iconbox__contentWrapper-->
-								</a><!--/.ml-iconbox__anchor-->
-							</div><!--/.ml-iconbox-->
-						</div><!--/.col-md-3 col-sm-6 col-xs-12-->
-						<div class="col-md-3 col-sm-6 col-xs-12 ml-iconbox__col">
-							<div class="ml-iconbox ml-iconbox--style2 ml-text--center">
-								<a href="#" class="ml-iconbox__anchor">
-									<div class="ml-iconbox__iconWrapper">
-										<span class="ml-iconbox__icon ml-icon-stethoscope"></span>
-									</div><!--/.ml-iconbox__iconWrapper-->
-									<div class="ml-iconbox__contentWrapper">
-										<div class="ml-iconbox__titleWrapper">
-											<h3 class="ml-iconbox__title">Physicians</h3>
-										</div><!--/.ml-iconbox__titleWrapper-->
-										<div class="ml-iconbox__descWrapper">
-											<p class="ml-iconbox__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed</p>
-										</div><!--/.ml-iconbox__descWrapper-->
-									</div><!--/.ml-iconbox__contentWrapper-->
-								</a><!--/.ml-iconbox__anchor-->
-							</div><!--/.ml-iconbox-->
-						</div><!--/.col-md-3 col-sm-6 col-xs-12-->
-					</div><!--/.row-->
-				</div><!--/.container-->
-			</div><!--/.ml-iconBoxSection-->
-			<!-- Icon box section end -->
-
-			<!-- Image box section start -->
-			<div class="ml-imgBoxSection">
-				<div class="container ml-container">
-					<div class="row">
-
-						<div class="col-md-3 col-sm-6">
-							<div class="ml-imageBox ml-imageBox--bordered ml-imageBox--mb-30">
-								<div class="ml-imageBox-wrapper">
-									<div class="ml-imageBox-imgWrapper">
-										<img src="dist/images/iconbox1.jpg" alt="">
-									</div>
-								</div><!--/.ml-imageBox-wrapper-->
-								<div class="ml-imageBox-details ml-text--left">
-									<h4 class="ml-imageBox-title">Lorem ipsum dolor sit</h4>
-									<h4 class="ml-imageBox-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</h4>
-									<a href="#" class="ml-btn ml-btn--style2 ml-btn--white2 ml-btn--inlineb">Read more</a>
-								</div><!--/.ml-imageBox-details-->
-							</div><!--/.ml-imageBox-->
-						</div><!--/.col-md-3 col-sm-6-->
-
-						<div class="col-md-3 col-sm-6">
-							<div class="ml-imageBox ml-imageBox--bordered ml-imageBox--mb-30">
-								<div class="ml-imageBox-wrapper">
-									<div class="ml-imageBox-imgWrapper">
-										<img src="dist/images/iconbox2.jpg" alt="">
-									</div>
-								</div><!--/.ml-imageBox-wrapper-->
-								<div class="ml-imageBox-details ml-text--left">
-									<h4 class="ml-imageBox-title">Lorem ipsum dolor sit</h4>
-									<h4 class="ml-imageBox-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</h4>
-									<a href="#" class="ml-btn ml-btn--style2 ml-btn--white2 ml-btn--inlineb">Read more</a>
-								</div><!--/.ml-imageBox-details-->
-							</div><!--/.ml-imageBox-->
-						</div><!--/.col-md-3 col-sm-6-->
-
-						<div class="col-md-3 col-sm-6">
-							<div class="ml-imageBox ml-imageBox--bordered ml-imageBox--mb-30">
-								<div class="ml-imageBox-wrapper">
-									<div class="ml-imageBox-imgWrapper">
-										<img src="dist/images/iconbox3.jpg" alt="">
-									</div>
-								</div><!--/.ml-imageBox-wrapper-->
-								<div class="ml-imageBox-details ml-text--left">
-									<h4 class="ml-imageBox-title">Lorem ipsum dolor sit</h4>
-									<h4 class="ml-imageBox-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</h4>
-									<a href="#" class="ml-btn ml-btn--style2 ml-btn--white2 ml-btn--inlineb">Read more</a>
-								</div><!--/.ml-imageBox-details-->
-							</div><!--/.ml-imageBox-->
-						</div><!--/.col-md-3 col-sm-6-->
-
-						<div class="col-md-3 col-sm-6">
-							<div class="ml-accordion ml-accordion--mb-30">
-
-								<div class="ml-accordion__group is-opened">
-									<div class="ml-accordion__title">
-										General Surgery
-									</div><!--/.-->
-									<div class="ml-accordion__content" style="display: block;">
-										<div class="ml-bg-overlay ml-bg-overlay--style2"></div>
-										<div class="ml-accordion__bgImg ml-accordion__bgImg1"></div>
-										<span class="ml-accordion__close"></span>
-										<div class="ml-accordion__caption">
-											<div class="row">
-												<div class="col-md-12 col-sm-12">
-													<h4>Lorem ipsum dolor sit</h4>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
-													<a href="#" class="ml-cta-btn ml-btn ml-btn--style3">Read More</a>
-												</div><!--/.col-md-12 col-sm-12-->
-											</div><!--/.row-->
-										</div><!--/.ml-accordion__caption-->
-									</div><!--/.ml-accordion__content-->
-								</div><!--/.ml-accordion-group-->
-
-								<div class="ml-accordion__group">
-									<div class="ml-accordion__title ml-accordion__title--mdBlue">
-										Medical Records
-									</div><!--/.-->
-									<div class="ml-accordion__content">
-										<div class="ml-bg-overlay ml-bg-overlay--style2"></div>
-										<div class="ml-accordion__bgImg ml-accordion__bgImg2"></div>
-										<span class="ml-accordion__close"></span>
-										<div class="ml-accordion__caption">
-											<div class="row">
-												<div class="col-md-12 col-sm-12">
-													<h4>Lorem ipsum dolor sit</h4>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
-													<a href="#" class="ml-cta-btn ml-btn ml-btn--style3">Read More</a>
-												</div><!--/.col-md-12 col-sm-12-->
-											</div><!--/.row-->
-										</div><!--/.ml-accordion__caption-->
-									</div><!--/.ml-accordion__content-->
-								</div><!--/.ml-accordion-group-->
-
-								<div class="ml-accordion__group">
-									<div class="ml-accordion__title">
-										Outline Bill Pay
-									</div><!--/.-->
-									<div class="ml-accordion__content">
-										<div class="ml-bg-overlay ml-bg-overlay--style2"></div>
-										<div class="ml-accordion__bgImg ml-accordion__bgImg3"></div>
-										<span class="ml-accordion__close"></span>
-										<div class="ml-accordion__caption">
-											<div class="row">
-												<div class="col-md-12 col-sm-12">
-													<h4>Lorem ipsum dolor sit</h4>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
-													<a href="#" class="ml-cta-btn ml-btn ml-btn--style3">Read More</a>
-												</div><!--/.col-md-12 col-sm-12-->
-											</div><!--/.row-->
-										</div><!--/.ml-accordion__caption-->
-									</div><!--/.ml-accordion__content-->
-								</div><!--/.ml-accordion-group-->
-
-							</div>
-						</div><!--/.col-md-3 col-sm-6-->
-
-					</div><!--/.row-->
-				</div><!--/.container-->
-			</div><!--/.ml-imgBoxSection-->
-			<!-- Image box section end -->
+			</div><!--/.ml-specialitySection-->
+			<!-- Speciality section end -->
 
 			<!-- Our team slider start -->
 			<div class="ml-teamSlider--wrapper">
@@ -514,163 +265,78 @@
 
 				</div><!--/.ml-teamSlider-->
 			</div> <!--/.ml-teamSlider-wrapper-->
-
-			<!-- Our team slider end -->
-
-			<!--  Counter element section start -->
-			<div class="ml-counterSection">
-				<div class="container ml-container">
-					<div class="row">
-
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="ml-iconbox ml-iconbox--style3">
-								<div class="ml-iconbox__iconWrapper">
-									<span class="ml-iconbox__icon ml-iconbox__icon--left ml-icon-medicalkit"></span>
-								</div><!--/.ml-iconbox__iconWrapper-->
-								<div class="ml-iconbox__contentWrapper">
-									<div class="ml-iconbox__titleWrapper">
-										<h3 class="ml-iconbox__title">+<span class="ml-counterElement" data-to="3000" data-speed="4000">0</span></h3>
-									</div><!--/.ml-iconbox__titleWrapper-->
-									<div class="ml-iconbox__descWrapper">
-										<p class="ml-iconbox__desc">Patients served</p>
-									</div><!--/.ml-iconbox__descWrapper-->
-								</div><!--/.ml-iconbox__contentWrapper-->
-							</div><!--/.ml-iconbox-->
-						</div><!--/.col-md-3 col-sm-6 col-xs-12-->
-
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="ml-iconbox ml-iconbox--style3">
-								<div class="ml-iconbox__iconWrapper">
-									<span class="ml-iconbox__icon ml-iconbox__icon--left ml-icon-pills"></span>
-								</div><!--/.ml-iconbox__iconWrapper-->
-								<div class="ml-iconbox__contentWrapper">
-									<div class="ml-iconbox__titleWrapper">
-										<h3 class="ml-iconbox__title"><span class="ml-counterElement" data-to="2" data-speed="4000">2</span>M</h3>
-									</div><!--/.ml-iconbox__titleWrapper-->
-									<div class="ml-iconbox__descWrapper">
-										<p class="ml-iconbox__desc">Treatments</p>
-									</div><!--/.ml-iconbox__descWrapper-->
-								</div><!--/.ml-iconbox__contentWrapper-->
-							</div><!--/.ml-iconbox-->
-						</div><!--/.col-md-3 col-sm-6 col-xs-12-->
-
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="ml-iconbox ml-iconbox--style3">
-								<div class="ml-iconbox__iconWrapper">
-									<span class="ml-iconbox__icon ml-iconbox__icon--left ml-icon-hospital"></span>
-								</div><!--/.ml-iconbox__iconWrapper-->
-								<div class="ml-iconbox__contentWrapper">
-									<div class="ml-iconbox__titleWrapper">
-										<h3 class="ml-iconbox__title"><span class="ml-counterElement" data-to="425" data-speed="4000">0</span></h3>
-									</div><!--/.ml-iconbox__titleWrapper-->
-									<div class="ml-iconbox__descWrapper">
-										<p class="ml-iconbox__desc">Clinics</p>
-									</div><!--/.ml-iconbox__descWrapper-->
-								</div><!--/.ml-iconbox__contentWrapper-->
-							</div><!--/.ml-iconbox-->
-						</div><!--/.col-md-3 col-sm-6 col-xs-12-->
-
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="ml-iconbox ml-iconbox--style3">
-								<div class="ml-iconbox__iconWrapper">
-									<span class="ml-iconbox__icon ml-iconbox__icon--left ml-icon-nurse"></span>
-								</div><!--/.ml-iconbox__iconWrapper-->
-								<div class="ml-iconbox__contentWrapper">
-									<div class="ml-iconbox__titleWrapper">
-										<h3 class="ml-iconbox__title"><span class="ml-counterElement" data-to="1500" data-speed="4000">0</span></h3>
-									</div><!--/.ml-iconbox__titleWrapper-->
-									<div class="ml-iconbox__descWrapper">
-										<p class="ml-iconbox__desc">Employees</p>
-									</div><!--/.ml-iconbox__descWrapper-->
-								</div><!--/.ml-iconbox__contentWrapper-->
-							</div><!--/.ml-iconbox-->
-						</div><!--/.col-md-3 col-sm-6 col-xs-12-->
-
-					</div><!--/.row-->
-				</div><!--/.ml-container-->
-			</div><!--/.ml-counterSection-->
-			<!--  Counter element section end -->
-
-			<!--  Services section start -->
-			
-
-			<!--  Appointment section start -->
-			<div class="ml-appointmentSection" id="appointment">
-				<div class="container ml-container-full">
-					<div class="row ml-gutter-0">
-						<div class="col-sm-4 col-md-4">
-							<div class="ml-appointment__box ml-bg--light">
-								<h3 class="ml-appointment__title ml-appointment__title--pb-20"><span>WORKING</span> HOURS</h3>
-								<p class="ml-appointment__subtitle ml-appointment__subtitle--pb-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-								<ul class="ml-programList">
-									<li class="ml-programList__item">
-										Monday - Thursday: <span>10:00 am - 2:00 pm</span>
-									</li>
-									<li class="ml-programList__item">
-										Friday: <span>12:00 am - 3:00 pm</span>
-									</li>
-									<li class="ml-programList__item">
-										Saturday: <span>13:00 am - 3:00 pm</span>
-									</li>
-									<li class="ml-programList__item">
-										Sunday: <span>10:00 am - 2:00 pm</span>
-									</li>
-								</ul><!--/.ml-programList-->
-							</div><!--/.ml-appointment__box-->
-						</div><!--/.col-sm-4 col-md-4-->
-						<div class="col-sm-4 col-md-4">
-							<div class="ml-appointment__box ml-bg--templateColor">
-								<h3 class="ml-appointment__title ml-appointment__title--light ml-appointment__title--regular ml-appointment__title--pb-30">BOOK AN APPOINTMENT</h3>
-								<form class="ml-contactform" action="contactForm.php" method="post">
-									<div class="col-sm-6 col-md-6">
-										<div class="ml-form-component ml-component--light">
-											<input class="ml-input" type="text" id="name"/>
-											<label for="name">Name*</label>
-										</div><!--/.ml-form-component-->
+			<div class="ml-servicesSection">
+			<h3 class="ml-londonClinic__title">Team of highly-trained &amp; licensed experienced professionals</h3>
+								<div class="row ml-middleLines">
+									<div class="col-sm-6 col-md-6 ml-boxes">
+										<div class="ml-imageBox ml-imageBox--left ml-imageBox--circle ml-imageBox--w70">
+											<div class="ml-imageBox-wrapper">
+												<div class="ml-imageBox-imgWrapper">
+													<img src="{{asset('dist/images/dog.jpg')}}" alt="...">
+												</div>
+												<div class="ml-imageBox-contentWrapper">
+													<div class="ml-imageBox-details">
+														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+														<p class="ml-imageBox-title ml-imageBox-title--style1">Martha M. Masters</p>
+														<p class="ml-imageBox-subtitle">Marketing - <span>WikiTravel</span></p>
+													</div>
+												</div><!--/.ml-imageBox-contentWrapper-->
+											</div><!--/.ml-imageBox-wrapper-->
+										</div><!--/.ml-imageBox-->
 									</div><!--/.col-sm-6 col-md-6-->
-
-									<div class="col-sm-6 col-md-6">
-										<div class="ml-form-component ml-component--light">
-											<input class="ml-input" type="text" id="phone"/>
-											<label for="phone">Phone*</label>
-										</div><!--/.ml-form-component-->
+									<div class="col-sm-6 col-md-6 ml-boxes">
+										<div class="ml-imageBox ml-imageBox--left ml-imageBox--circle ml-imageBox--w70">
+											<div class="ml-imageBox-wrapper">
+												<div class="ml-imageBox-imgWrapper">
+													<img src="dist/images/cat.jpg" alt="...">
+												</div>
+												<div class="ml-imageBox-contentWrapper">
+													<div class="ml-imageBox-details">
+														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+														<p class="ml-imageBox-title ml-imageBox-title--style1">Anna Vandana</p>
+														<p class="ml-imageBox-subtitle">CEO - <span>Media Wiki</span></p>
+													</div>
+												</div><!--/.ml-imageBox-contentWrapper-->
+											</div><!--/.ml-imageBox-wrapper-->
+										</div><!--/.ml-imageBox-->
 									</div><!--/.col-sm-6 col-md-6-->
 									<div class="clearfix"></div>
-									<div class="col-sm-6 col-md-6">
-										<div class="ml-form-component ml-component--light">
-											<input class="ml-input" type="text" id="date"/>
-											<label for="date">Date</label>
-										</div><!--/.ml-form-component-->
+									<div class="col-sm-6 col-md-6 ml-boxes">
+										<div class="ml-imageBox ml-imageBox--left ml-imageBox--circle ml-imageBox--w70">
+											<div class="ml-imageBox-wrapper">
+												<div class="ml-imageBox-imgWrapper">
+													<img src="dist/images/cat.jpg" alt="...">
+												</div>
+												<div class="ml-imageBox-contentWrapper">
+													<div class="ml-imageBox-details">
+														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+														<p class="ml-imageBox-title ml-imageBox-title--style1">Maxi Milli</p>
+														<p class="ml-imageBox-subtitle">Public Relations - <span>Max Mobilcom</span></p>
+													</div>
+												</div><!--/.ml-imageBox-contentWrapper-->
+											</div><!--/.ml-imageBox-wrapper-->
+										</div><!--/.ml-imageBox-->
 									</div><!--/.col-sm-6 col-md-6-->
-									<div class="col-sm-6 col-md-6">
-										<div class="ml-form-component ml-component--light">
-											<input class="ml-input" type="text" id="doctor"/>
-											<label for="doctor">Doctor</label>
-										</div><!--/.ml-form-component-->
+									<div class="col-sm-6 col-md-6 ml-boxes">
+										<div class="ml-imageBox ml-imageBox--left ml-imageBox--circle ml-imageBox--w70">
+											<div class="ml-imageBox-wrapper">
+												<div class="ml-imageBox-imgWrapper">
+													<img src="dist/images/dog.jpg" alt="...">
+												</div>
+												<div class="ml-imageBox-contentWrapper">
+													<div class="ml-imageBox-details">
+														<p>Lae sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+														<p class="ml-imageBox-title ml-imageBox-title--style1">Dr. Dosist</p>
+														<p class="ml-imageBox-subtitle">Dean of Medicine - <span>Doom Inc</span></p>
+													</div>
+												</div><!--/.ml-imageBox-contentWrapper-->
+											</div><!--/.ml-imageBox-wrapper-->
+										</div><!--/.ml-imageBox-->
 									</div><!--/.col-sm-6 col-md-6-->
-									<div class="col-sm-12">
-										<div class="js-cf-message"></div>
-										<input type="hidden" name="cf_type" value="cf_1">
-										<input type="hidden" value="http://localhost:3000/" class="ml-redirect-to"/>
-									</div><!--/.col-sm-12-->
-									<div class="col-sm-12 col-md-12">
-										<div class="ml-appointment__submitWrapper">
-											<button class="ml-submitcontact ml-appointment__submit ml-btn ml-btn--style4" type="submit">MAKE AN APPOINTMENT</button>
-										</div>
-									</div>
-								</form>
-							</div><!--/.ml-appointment__box-->
-						</div><!--/.col-sm-4 col-md-4-->
-						<div class="col-sm-4 col-md-4">
-							<div class="ml-appointment__bgImgWrapper">
-								<div class="ml-appointment__bgImg"></div>
-							</div>
-						</div><!--/.col-sm-4 col-md-4-->
+								</div><!--/.row-->
 					</div>
-				</div>
-			</div><!--/.ml-appointmentSection-->
-			<!--  Appointment section end -->
-
+			<!--  Services section end -->
+			
 			<!-- Categories section start -->
 			<div class="ml-categoriesSection">
 				<div class="container ml-container">
