@@ -1,0 +1,65 @@
+{% extends 'baseBack.html.twig' %}
+{% block headerContent %}
+{% endblock %}
+{% block mainContent %}
+    <!-- /.row -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Liste des PetSitters</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Nom</th>
+                      <th>Prénom</th>
+                      <th>Type</th>
+                      <th>Email</th>
+                      <th>Bloquer/Débloquer</th>
+                      <th>Supprimer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for user in pagination %}
+                  {% if not (user.email == "admin@gmail.com") %}
+                    <tr>
+                      <td>{{user.nom}}</td>
+                      <td>{{user.prenom}}</td>
+                      <td>{{user.type}}</td>
+                      <td>{{user.email}}</td>
+                      {% if user.bloque == 0 %}
+                      <td><a href="{{ path('bloquer', {'id':user.id}) }}"><button type="button" class="btn btn-block btn-warning">Bloquer</button></a></td>
+                      {% else %}
+                      <td><a href="{{ path('debloquer', {'id':user.id}) }}"><button type="button" class="btn btn-block btn-danger">Debloquer</button></a></td> 
+                      {% endif %}
+                      <td><a href="{{ path('removePetSitter', {'id':user.id}) }}" class="btn btn-danger btn-delete">Supprimer</a></td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <div style="text-align: center;">
+                {{ knp_pagination_render(pagination) }}
+                </div>
+{% endblock %}

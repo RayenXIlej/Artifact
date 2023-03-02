@@ -7,12 +7,13 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -59,6 +60,22 @@ class AdminController extends AbstractController
         $user = $repo->findByType("petSitter");
         return $this->render('admin/gererPetSitter.html.twig',[
             'users' => $user
+        ]);
+    }
+
+    #[Route('/gererUsers', name: 'gererUsers')]
+    public function gererUsers(UserRepository $repo, Request $request, PaginatorInterface $paginator){
+        $user = $repo->findAll();
+
+        $pagination = $paginator->paginate(
+            $repo->paginationQuery(),
+            $request->query->getInt('page', 1),
+            5
+        );
+
+        return $this->render('admin/gererUsers.html.twig',[
+            
+            'pagination' => $pagination
         ]);
     }
 
