@@ -3,14 +3,17 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\ResetPasswordType;
+use App\Form\ForgetPasswordType;
 use Symfony\Component\Mime\Email;
 use App\Repository\UserRepository;
 use Symfony\Component\Mailer\Mailer;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\BrowserKit\Response;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -20,6 +23,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
@@ -126,6 +130,68 @@ class RegistrationController extends AbstractController
         ]);
     }
 
+
+    #[Route('/forget_password', name: 'forget_password')]
+    public function forgetPassword(Request $request,UserRepository $repo): Response
+    {
+     
+        $form = $this->createForm(ForgetPasswordType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+           $email = $form['email']->getData();
+           $test = $repo->findOneByEmail($email);
+           if($test != null){
+            $url="http://localhost:8000/reset_password/".$test->getId();
+            $email = (new Email())
+            ->from('ArtifactPidev@gmail.com')
+            ->to($email)
+            ->subject('MYVET')
+            ->html("cher <b>" .$test->getNom(). "</b> Nous avons reçu une demande de réinitialisation de votre mot de passe pour notre application.<br> Veuillez cliquer sur le lien suivant <a href=$url> ici </a><br> Cordialement<br><b> Administration MyVet</b> ");
+            $transport=(new GmailSmtpTransport('ArtifactPidev@gmail.com','niskijoybvwhekem'));
+             $mailer=new Mailer($transport);
+            $mailer->send($email);
+            $this->addFlash('success','demande réinitialisation est effectué avec succés');
+
+          }
+          else{
+            $this->addFlash('danger','cette adresse n\'existe pas');
+        }
+        }
+        return $this->render('security/forgetPassword.html.twig',[
+            'form'=>$form->createView()
+        ]);
+    }
+
+    #[Route('/reset_password/{id}', name: 'reset_password')]
+    public function reset($id,Request $request,UserRepository $repo,UserPasswordHasherInterface $passwordHasher): Response
+    {
+        $form = $this->createForm(ResetPasswordType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+           $test = $repo->findOneById($id);
+             if($test != null){
+                $plaintextPassword=$form["password"]->getData();
+                // hash the password (based on the security.yaml config for the $user class)
+               $hashedPassword = $passwordHasher->hashPassword(
+               $test,
+               $plaintextPassword
+               );
+                $test->setPassword($hashedPassword);
+                $em = $this->getDoctrine()->getManager();//doctrine
+                $em->flush();
+             $this->addFlash('success','mot de passe est rénietialisé');
+             return $this->redirectToRoute('app_login');
+
+             }
+        }
+        return $this->render('security/resetPassword.html.twig',[
+            'form'=>$form->createView(),
+        ]);
+    
+}
+
     //--------------------MOBILE------------------------
 
     /**
@@ -155,8 +221,8 @@ class RegistrationController extends AbstractController
         
         $user->setEmail($email);
         $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
-        $user->SetAcces(1);
-        $user->SetBloque(0);
+        // $user->SetAcces(1);
+        // $user->SetBloque(0);
 
         $user->setNom($nom);
         $user->setPrenom($prenom);
