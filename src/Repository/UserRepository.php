@@ -108,6 +108,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function findByAdresse($value): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.adresse = :adresse')
+            ->setParameter('adresse', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
 //    /**
 //     * @return User[] Returns an array of User objects

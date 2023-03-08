@@ -227,6 +227,25 @@ class AdminController extends AbstractController
             'form' => $form->createView(),'last_username' => $lastUsername, 'error' => $error
         ]);
     }
+
+    #[Route('/statistiqueParType', name: 'statistiqueParType')]
+    public function statistiqueParType(UserRepository $repo){
+        $veterinaire = $repo->findByType("veterinaire");
+        $petsitter = $repo->findByType("petSitter");
+        $petOwner = $repo->findByType("petOwner");
+        return $this->render('admin/statistique.html.twig',[
+            'veterinaires' => $veterinaire, 'petsitters' => $petsitter
+            ,'petowners' => $petOwner
+        ]);
+    }
+
+    #[Route('/statistiqueParAdresse', name: 'statistiqueParAdresse')]
+    public function statistiqueParAdresse(UserRepository $repo){
+        $user = $repo->findByAdresse("Tunis");
+        return $this->render('admin/gererPetSitter.html.twig',[
+            'users' => $user
+        ]);
+    }
 //-------------------------MOBILE------------------------------
     #[Route('/displayPetSitter', name: 'displayPetSitter')]
     public function displayPetSitter(UserRepository $repo){

@@ -1,0 +1,78 @@
+{% extends 'baseBack.html.twig' %}
+{% block headerContent %}
+{% endblock %}
+{% block mainContent %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+    
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+    <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Statistique des nombres des utilisateurs</h3>
+              </div>
+              <div class="card-body">
+                <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script>
+        let ctx = document.getElementById('myChart').getContext('2d');
+let labels = ['petSitters', 'petOwners 🌮', 'Vétérinaires 🌭'];
+let colorHex = ['#FB3640', '#EFCA08', '#43AA8B'];
+
+let myChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    datasets: [{
+      data: [{{ veterinaires | length }}*100/({{ veterinaires | length }}+{{ petowners | length }}+{{ petsitters | length }}),
+       {{ petowners | length }}*100/({{ veterinaires | length }}+{{ petowners | length }}+{{ petsitters | length }}),
+        {{ petsitters | length }}*100/({{ veterinaires | length }}+{{ petowners | length }}+{{ petsitters | length }})],
+      backgroundColor: colorHex
+    }],
+    labels: labels
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'bottom'
+    },
+    plugins: {
+      datalabels: {
+        color: '#fff',
+        anchor: 'end',
+        align: 'start',
+        offset: -10,
+        borderWidth: 2,
+        borderColor: '#fff',
+        borderRadius: 25,
+        backgroundColor: (context) => {
+          return context.dataset.backgroundColor;
+        },
+        font: {
+          weight: 'bold',
+          size: '10'
+        },
+        formatter: (value) => {
+          return value + ' %';
+        }
+      }
+    }
+  }
+})
+  </script>
+{% endblock %}
