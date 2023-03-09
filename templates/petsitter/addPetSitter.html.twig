@@ -1,0 +1,43 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}New PetSitter {% endblock %}
+
+{% block body %}
+    <h1>Create new PetSitter </h1>
+
+    {{ form_start(formPetSitter,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <table>
+        <tr>
+            <td>{{ form_label(formPetSitter.Nom," Nom ") }}</td>
+
+            <td>{{ form_widget(formPetSitter.Nom) }}</td>
+            <td>{{ form_errors(formPetSitter.Nom) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(formPetSitter.Prenom," Prenom ") }}</td>
+            <td>{{ form_widget(formPetSitter.Prenom) }}</td>
+            <td>{{ form_errors(formPetSitter.Prenom) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(formPetSitter.NumTel," NumTel ") }}</td>
+            <td>{{ form_widget(formPetSitter.NumTel) }}</td>
+            <td>{{ form_errors(formPetSitter.NumTel) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(formPetSitter.Adresse," Adresse ") }}</td>
+            <td>{{ form_widget(formPetSitter.Adresse) }}</td>
+            <td>{{ form_errors(formPetSitter.Adresse) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(formPetSitter.Photo," Photo ") }}</td>
+            <td>{{ form_widget(formPetSitter.Photo) }}</td>
+            <td>{{ form_errors(formPetSitter.Photo) }}</td>
+        </tr>
+    </table>
+    <br><br>
+        {{ form_widget(formPetSitter.Submit,{'attr':{'class':'main_bt'}}) }}
+
+    <div class="button_section"> </div>
+    {{ form_end(formPetSitter) }}
+
+{% endblock %}
