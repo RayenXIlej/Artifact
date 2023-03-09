@@ -1,0 +1,45 @@
+
+{% extends 'base.html.twig' %}
+{% block title %} PetSitter {% endblock %}
+
+{% block body %}
+    {% block container %}
+
+        <!-- Products Start -->
+
+        <div class="container-fluid pt-5">
+            <div class="text-center mb-4">
+                <h2 class="section-title px-5"><span class="px-2">List PetSitters</span></h2>
+            </div>
+        </div>
+
+
+<table border="0" class="display table table-bordered" id="hidden-table-info">
+            <tr>
+
+                <td style="color: #3ea9dd"> Nom </td>
+                <td style="color: #3ea9dd"> Prenom </td>
+                <td style="color: #3ea9dd"> NumTel </td>
+                <td style="color: #3ea9dd"> Adresse </td>
+                <td style="color: #3ea9dd"> Photo </td>
+
+            </tr>
+
+            {% for i in listPetSitters %}
+                <tr>
+                    <td>{{ i.Nom }}</td>
+                    <td> {{i.Prenom}}</td>
+                    <td>{{ i.NumTel }}</td>
+                    <td>{{ i.Adresse }}</td>
+                    <td><img src="{{asset('back/img/'~ i.Photo)}}"
+                             alt ="#" width="10" style="height:50px" />
+                             </td>
+                </tr>
+
+            {% endfor %}
+        </table>
+    {% endblock %}
+
+
+
+{% endblock %}

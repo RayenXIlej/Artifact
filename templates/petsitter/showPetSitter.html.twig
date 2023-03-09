@@ -1,0 +1,60 @@
+{% extends 'index.html.twig' %}
+
+{% block body %}
+
+    <h1>PetSitter</h1>
+
+<div>
+    <ul class="nav pull-right top-menu">
+        <li> <a class="btn btn-danger btn-xs" href="{{ path('addPetSitter') }}" >Ajouter</a> </li>
+    </ul>
+</div>
+
+
+    <ul class="nav pull-right top-menu">
+
+    <table border="0" class="display table table-bordered" id="hidden-table-info">
+
+        <tr>
+
+            <td style="color: #3ea9dd"> Nom</td>
+            <td style="color: #3ea9dd"> Prenom</td>
+            <td style="color: #3ea9dd"> NumTel </td>
+            <td style="color: #3ea9dd"> Adresse </td>
+            <td style="color: #3ea9dd"> Photo </td>
+
+            <td style="color: #3ea9dd"> Modifier</td>
+            <td style="color: #3ea9dd"> Supprimer</td>
+
+        </tr>
+
+        {% for i in showPetSitters %}
+            <tr>
+                <td>{{ i.Nom }}</td>
+                <td>{{ i.Prenom}}</td>
+                <td>{{ i.NumTel }}</td>
+                <td>{{ i.Adresse }}</td>
+                <td><img src="{{asset('back/img/'~ i.Photo)}}"
+                         width="100"></td>
+                <td> <a href="{{ path('updatePetSitter',{'id':i.id}) }}" class="btn btn-primary btn-xs">
+                        <i class="fa fa-pencil">Modfier
+
+                        </i>
+                    </a>
+                </td>
+
+                <td> <a href="{{ path('deletePetSitter',{'id':i.id}) }}" class="btn btn-danger btn-xs">
+                        <i class="fa fa-trash">Delete
+
+                        </i>
+                    </a>
+                </td>
+
+            </tr>
+
+        {% endfor %}
+    </table>
+
+
+
+{% endblock %}
