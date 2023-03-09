@@ -1,0 +1,39 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}New Offre  {% endblock %}
+
+{% block body %}
+    <h1>Create new Offre </h1>
+
+    {{ form_start(formOffre,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <table>
+        <tr>
+            <td>{{ form_label(formOffre.Description," Description ") }}</td>
+
+            <td>{{ form_widget(formOffre.Description) }}</td>
+            <td>{{ form_errors(formOffre.Description) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(formOffre.DateDebut," DateDebut ") }}</td>
+            <td>{{ form_widget(formOffre.DateDebut) }}</td>
+            <td>{{ form_errors(formOffre.DateDebut) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(formOffre.DateFin," DateFin ") }}</td>
+            <td>{{ form_widget(formOffre.DateFin) }}</td>
+            <td>{{ form_errors(formOffre.DateFin) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(formOffre.Prix," Prix ") }}</td>
+
+            <td>{{ form_widget(formOffre.Prix) }}</td>
+            <td>{{ form_errors(formOffre.Prix) }}</td>
+        </tr>
+    </table>
+    <br><br>
+        {{ form_widget(formOffre.Submit,{'attr':{'class':'main_bt'}}) }}
+
+    <div class="button_section"> </div>
+    {{ form_end(formOffre) }}
+
+{% endblock %}

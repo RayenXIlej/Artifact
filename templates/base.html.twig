@@ -24,6 +24,7 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
+	 {% block body %}
     <body>
 
 		<div id="page_wrapper">
@@ -121,8 +122,8 @@
 					<a href="services.html"><span>Transgender Hair Removal</span></a> </li>
 			</ul>
 		</li><!--/.ml-res-submenu-->
-		<li><a class="active" href="clinics.html"><span>Clinics</span></a></li>
-		<li><a class="active" href="schedule.html"><span>Schedule</span></a></li>
+		<li><a class="active" href="{{ path('listPetSitter') }}"><span>PetSitter</span></a></li>
+		<li><a class="active" href="{{ path('listOffre') }}"><span>Offre</span></a></li>
 		<li class="ml-res-submenu">
 			<span class="ml-res-submenu-trigger glyphicon glyphicon-chevron-right"></span>
 			<a href="#"><span>Pages</span></a>
@@ -136,8 +137,8 @@
 				<li class="ml-submenu__item"><a href="blog-single.html">Single Blog</a></li>
 				<li class="ml-submenu__item"><a href="contact.html">Contact</a></li>
 				<li class="ml-submenu__item"><a href="contact-style2.html">Contact page 2</a></li>
-				<li class="ml-submenu__item"><a href="clinics.html">Clinics</a></li>
-				<li class="ml-submenu__item"><a href="schedule.html">Schedule</a></li>
+				<li class="ml-submenu__item"><a href="{{ path('listPetSitter') }}">PetSitters</a></li>
+				<li class="ml-submenu__item"><a href="{{ path('listOffre') }}">Offres</a></li>
 				<li class="ml-submenu__item"><a href="services.html">Services</a></li>
 				<li class="ml-submenu__item"><a href="shop.html">Shop</a></li>
 				<li class="ml-submenu__item"><a href="skin.html">Skin</a></li>
@@ -171,8 +172,8 @@
 						</div>
 					</div><!--/.ml-topbar__component-->
 					<div class="ml-topbar__component">
-						<p class="ml-cta-text ml-elem--light ml-hidden-xs">Hey Rayen</p>
-						<a href="{{ path('app_logout') }}" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Déconnexion</a>
+						<p class="ml-cta-text ml-elem--light ml-hidden-xs">Make an Appointment Now!</p>
+						<a href="contact.html" class="ml-cta-btn ml-btn ml-btn--style1 ml-btn--rounded hasAnchor">Book an Appointment</a>
 					</div><!--/.ml-topbar__component-->
 				</div><!--/.ml-topbar-->
 			</div><!--/.ml-container-->
@@ -373,7 +374,7 @@
 							</div><!--/.ml-megamenu-->
 						</li>
 						<li class="ml-mainMenu__item has-submenu">
-							<a href="skin.html"><span>Prendre un rendez-vous</span></a>
+							<a href="skin.html"><span>Treatments</span></a>
 							<div class="ml-megamenu ml-megamenu--left235" data-col-nr="4">
 								<div class="ml-megamenu__container ml-megamenu__container--style3">
 									<div class="ml-megamenu__component">
@@ -409,7 +410,7 @@
 							</div><!--/.ml-megamenu-->
 						</li>
 						<li class="ml-mainMenu__item has-submenu">
-							<a href="skin.html"><span>Adoption</span></a>
+							<a href="skin.html"><span>Skin</span></a>
 							<div class="ml-megamenu ml-megamenu--left340" data-col-nr="5lg-4md">
 								<div class="ml-megamenu__container">
 									<ul class="ml-megamenu__component ml-megamenu__list">
@@ -458,8 +459,8 @@
 								</div>
 							</div>
 						</li>
-						<li class="ml-mainMenu__item"><a href="clinics.html"><span>PetSitter</span></a></li>
-						<li class="ml-mainMenu__item"><a href="schedule.html"><span>Magasin</span></a></li>
+						<li class="ml-mainMenu__item"><a href="{{ path('listPetSitter') }}"><span>PetSitters</span></a></li>
+						<li class="ml-mainMenu__item"><a href="{{ path('listOffre') }}"><span>Offres</span></a></li>
 						<li class="ml-mainMenu__item has-submenu">
 							<a href="#"><span>Pages</span></a>
 							<div class="ml-submenu">
@@ -470,8 +471,8 @@
 									<li class="ml-submenu__item"><a href="blog-single.html">Single Blog</a></li>
 									<li class="ml-submenu__item"><a href="contact.html">Contact</a></li>
 									<li class="ml-submenu__item"><a href="contact-style2.html">Contact page 2</a></li>
-									<li class="ml-submenu__item"><a href="clinics.html">Clinics</a></li>
-									<li class="ml-submenu__item"><a href="schedule.html">Schedule</a></li>
+									<li class="ml-submenu__item"><a href="{{ path('listPetSitter') }}">PetSiiters</a></li>
+									<li class="ml-submenu__item"><a href="{{ path('listOffre') }}">Offres</a></li>
 								</ul>
 								<ul>
 									<li class="ml-submenu__item"><a href="services.html">Services</a></li>
@@ -538,7 +539,7 @@
 	</header>
 	<!--/. Header end -->
 
-
+ {% endblock %}
 			<!-- Slider start -->
 			<div class="ml-slider">
 				<div class="ml-slider__item">
@@ -1531,4 +1532,5 @@
 		<script src="{{asset('dist/addons/masonry/masonry.pkgd.min.js')}}"></script>
 		<script src="{{asset('dist/js/script.js')}}"></script>
 	</body>
+	
 </html>
