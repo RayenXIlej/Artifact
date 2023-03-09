@@ -105,13 +105,12 @@
             </div>
             {{ form_errors(form.confirm_password) }}
 
-             {# <div class="">
+
+               
+              <div id='map' style='width: 400px; height: 100px;'></div> 
               
               
-                
-                      <div id='map' style='width: 40px; height: 30px;'></div>          
-                
-            </div> #}
+              
 
             <div class="input-field">
               <i class="fas fa-address-card"></i>
@@ -195,6 +194,49 @@
     </div>
 
     <script src="inscription/app.js"></script>
+    <script>
+       
+                  
+            mapboxgl.accessToken = 'pk.eyJ1IjoiaGFzc2VuOTgiLCJhIjoiY2ttY2ppdjBkMmNyNjJ2cXIzbzF0N2l2aCJ9.zMeyLc4EVz2S2NA56BRcEQ';
+            var map = new mapboxgl.Map({
+            container: 'map',
+            center: [10.885904,33.773391], 
+            style: 'mapbox://styles/mapbox/streets-v11',
+            zoom:6,
+            minZoom: 1,
+            maxZoom: 20
+            });
+            map.boxZoom.enable();
+
+            map.on('click', function(e) {
+                // The event object (e) contains information like the
+                // coordinates of the point on the map that was clicked.
+              e.lngLat.lng
+              $.get("https://us1.locationiq.com/v1/reverse.php?key=488a8102895b75&lat="+e.lngLat.lat
+              +"&lon=" +e.lngLat.lng +"&format=json",(data)=>{
+                  console.log(data)
+            $("#user_nom").val(data["address"]["state"])  
+            
+            // document.getElementById("pays_id").value = data["address"]["country"]
+
+            
+            
+              })
+                });
+                map.on('load', function () {
+                    // Add Mapillary sequence layer.
+                    // https://www.mapillary.com/developer/tiles-documentation/#sequence-layer
+                  
+                })
+                map.addControl(new mapboxgl.NavigationControl());
+
+            $("#map").click( function(e) {
+                // The event object (e) contains information like the
+                // coordinates of the point on the map that was clicked.
+                console.log('A click event has occurred at ' + e.lngLat);
+                });
+                  
+       </script>
     
   </body>
 </html>

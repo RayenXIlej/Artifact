@@ -97,8 +97,8 @@ class RegistrationController extends AbstractController
             // envoyer un mail de confirmation
             $email = (new Email())    
             ->from('ArtifactPidev@gmail.com')
-                ->to($user->getEmail())
-                ->subject('Bienvenue dans notre application')
+            ->to($user->getEmail())
+            ->subject('Bienvenue dans notre application')
             ->html('<p> Cher/chère '.$user->getNom().' '.$user->getPrenom().',</p></br>'
             .'<p> Nous sommes ravis de vous accueillir dans notre application ! Nous sommes convaincus que vous allez apprécier les fonctionnalités que nous avons développées pour vous.</p></br>'
             .'<p> Votre compte a été créé avec succès. </p></br>'

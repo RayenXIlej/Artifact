@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Symfony\Component\Mailer\Mailer;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
@@ -13,8 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -128,6 +131,25 @@ class AdminController extends AbstractController
         $user->setAcces(1);
         $em = $doctrine->getManager();
         $em->flush();
+
+        // envoyer un mail de validation de compte par l administrateur lui disant que son compte a été créé
+        $email = (new Email())    
+        ->from('ArtifactPidev@gmail.com')
+        ->to($user->getEmail())
+        ->subject('Validation de votre compte')
+        ->html('<p> Cher/chère '.$user->getNom().' '.$user->getPrenom().',</p></br>'
+            .'<p> Nous sommes ravis de vous accueillir dans notre application ! Nous sommes convaincus que vous allez apprécier les fonctionnalités que nous avons développées pour vous.</p></br>'
+            .'<p> Votre compte a été créé avec succès. </p></br>'
+            .'<p> Votre email est : '.$user->getEmail().'</p>'
+            .'<p> Votre role est : '.$user->getType().'</p>'
+            .'<p> Si vous avez des questions ou des commentaires sur l application, n hésitez pas à nous contacter à l adresse e-mail suivante : ArtifactPidev@gmail.com </p></br>'
+            .'<p> Encore une fois, bienvenue dans notre application et merci de nous avoir choisi ! </p></br>Cordialement,</br>'
+            .'<p> L équipe de Artifact </p>'
+        );  
+        $transport=(new GmailSmtpTransport('ArtifactPidev@gmail.com','niskijoybvwhekem'));
+        $mailer=new Mailer($transport);
+        $mailer->send($email);
+        
         return $this->redirectToRoute('demandeAcces');
         
     }
@@ -144,6 +166,24 @@ class AdminController extends AbstractController
         $userType->getType();
         $em = $doctrine->getManager();
         $em->flush();
+        // envoyer un mail de debloquage par l administrateur lui disant que son compte a été créé
+        $email = (new Email())    
+        ->from('ArtifactPidev@gmail.com')
+        ->to($user->getEmail())
+        ->subject('Déblocage de votre compte')
+        ->html('<p> Cher/chère '.$user->getNom().' '.$user->getPrenom().',</p></br>'
+        .'<p> Nous avons le plaisir de vous informer que votre compte utilisateur sur notre site a été débloqué. Vous pouvez maintenant vous connecter à nouveau à votre compte et accéder à toutes les fonctionnalités du site.</p></br>'
+        .'<p> Nous espérons que vous continuerez à profiter de nos services en ligne et nous vous remercions de votre patience et de votre compréhension pendant la période de blocage. </p></br>'
+        .'<p> Nous tenons à vous rappeler que la sécurité de notre site et de nos utilisateurs est notre priorité absolue, nous vous invitons donc à respecter les conditions d utilisation et à ne pas effectuer d activités suspectes.</p>'
+        .'<p> Nous vous remercions de votre compréhension et restons à votre disposition si vous avez des questions ou des préoccupations.</p>'
+        .'<p> Si vous avez des questions ou des commentaires sur l application, n hésitez pas à nous contacter à l adresse e-mail suivante : ArtifactPidev@gmail.com </p></br>'
+        .'</br>Cordialement,</br>'
+        .'<p> L équipe de Artifact </p>'
+        );  
+        $transport=(new GmailSmtpTransport('ArtifactPidev@gmail.com','niskijoybvwhekem'));
+        $mailer=new Mailer($transport);
+        $mailer->send($email);
+
         if ($user->getType() == "veterinaire") {
             return $this->redirectToRoute("gererVet");
         } elseif ($user->getType() == "petOwner") {
@@ -165,8 +205,26 @@ class AdminController extends AbstractController
         $user->setBloque(1);
 
 
-         $em = $doctrine->getManager();
-            $em->flush();
+        $em = $doctrine->getManager();
+        $em->flush();
+
+        // envoyer un mail de blocage par l administrateur lui disant que son compte a été créé
+        $email = (new Email())    
+        ->from('ArtifactPidev@gmail.com')
+        ->to($user->getEmail())
+        ->subject('Blocage de votre compte')
+        ->html('<p> Cher/chère '.$user->getNom().' '.$user->getPrenom().',</p></br>'
+        .'<p> Nous vous écrivons pour vous informer que votre compte utilisateur a été bloqué sur notre site. Ce blocage est dû à un non-respect de nos conditions d utilisation ou à des activités suspectes détectées sur votre compte.</p></br>'
+        .'<p> Nous vous invitons à prendre contact avec notre service clientèle si vous souhaitez plus d informations sur les raisons de ce blocage ou si vous pensez que cela a été une erreur. </p></br>'
+        .'<p> Nous tenons à souligner que la sécurité de notre site et de nos utilisateurs est notre priorité absolue et que nous prenons des mesures pour assurer la sécurité de tous les comptes.</p>'
+        .'<p> Nous vous remercions de votre compréhension et restons à votre disposition si vous avez des questions ou des préoccupations.</p>'
+        .'<p> Si vous avez des questions ou des commentaires sur l application, n hésitez pas à nous contacter à l adresse e-mail suivante : ArtifactPidev@gmail.com </p></br>'
+        .'</br>Cordialement,</br>'
+        .'<p> L équipe de Artifact </p>'
+        );  
+        $transport=(new GmailSmtpTransport('ArtifactPidev@gmail.com','niskijoybvwhekem'));
+        $mailer=new Mailer($transport);
+        $mailer->send($email);
             
             if ($user->getType() == "veterinaire") {
                 return $this->redirectToRoute("gererVet");
@@ -210,8 +268,33 @@ class AdminController extends AbstractController
             }
 
             // Set their role
+             // Set their role
+             if ($user->getType() == "veterinaire") {
+                $user->setRoles(['ROLE_VETERINAIRE']);
+            } elseif ($user->getType() == "petOwner") {
+                $user->setRoles(['ROLE_PETOWNER']);
+            } else {
+                $user->setRoles(['ROLE_PETSITTER']);
+            }
+            
 
-            $user->setRoles(['ROLE_USER']);
+            // envoyer un mail de confirmation par l administrateur lui disant que son compte a été créé
+            $email = (new Email())    
+            ->from('ArtifactPidev@gmail.com')
+            ->to($user->getEmail())
+            ->subject('Bienvenue dans notre application')
+            ->html('<p> Cher/chère '.$user->getNom().' '.$user->getPrenom().',</p></br>'
+            .'<p> Nous sommes ravis de vous accueillir dans notre application ! Nous sommes convaincus que vous allez apprécier les fonctionnalités que nous avons développées pour vous.</p></br>'
+            .'<p> Votre compte a été créé avec succès. </p></br>'
+            .'<p> Votre email est : '.$user->getEmail().'</p>'
+            .'<p> Votre role est : '.$user->getType().'</p>'
+            .'<p> Si vous avez des questions ou des commentaires sur l application, n hésitez pas à nous contacter à l adresse e-mail suivante : ArtifactPidev@gmail.com </p></br>'
+            .'<p> Encore une fois, bienvenue dans notre application et merci de nous avoir choisi ! </p></br>Cordialement,</br>'
+            .'<p> L équipe de Artifact </p>'
+            );  
+        $transport=(new GmailSmtpTransport('ArtifactPidev@gmail.com','niskijoybvwhekem'));
+        $mailer=new Mailer($transport);
+        $mailer->send($email);
 
             // Save
             $em = $this->getDoctrine()->getManager();
